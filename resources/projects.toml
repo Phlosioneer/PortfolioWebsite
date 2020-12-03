@@ -1,0 +1,147 @@
+
+featured = [
+	"penguin",
+	"zork",
+	"lights_out",
+	"connect_four"
+]
+
+not_featured = [
+	"portfolio",
+	"blue_lagoon",
+	"jmaker",
+	"pentago",
+	"download_hawk",
+	"color_picker",
+	"gw2_tradingpost",
+	"redstone_arsenal",
+	"knights_dialer",
+	"lua-rs",
+	"pipelined_mips",
+	"molek_solitaire",
+	"masyu_solver",
+	"sudoku_interactive",
+	"calculator",
+	"caracassone"
+]
+
+[projects.penguin]
+name = "Penguin"
+language = "Java"
+brief = "A java game about a sliding penguin"
+image = "placeholder.png"
+
+[projects.zork]
+name = "Zork"
+language = [ "C", "Rust" ]
+brief = "Project to translate zork into Rust"
+image = "placeholder.png"
+
+[projects.lights_out]
+name = "Lights Out"
+language = "Javascript"
+brief = "Classic puzzle game as a web page"
+image = "placeholder.png"
+
+[projects.connect_four]
+name = "Connect Four"
+language = [] # Languages will be listed in description
+brief = "Same game, in several languages"
+image = "placeholder.png"
+
+
+
+[projects.portfolio]
+name = "Portfolio Website"
+language = "Javascript"
+brief = "This website!"
+
+[projects.blue_lagoon]
+name = "Blue Lagoon"
+language = "Processing"
+brief = "Digital form of the board game"
+
+[projects.jmaker]
+name = "JMaker"
+language = "Java"
+brief = "Build system hybrid between Make and Gradle"
+
+[projects.pentago]
+name = "Pentago"
+language = "Java" # TODO: Processing?
+brief = "Digital form of the board game"
+
+[projects.download_hawk]
+name = "Download Hawk"
+language = "Java"
+brief = "Program to delete unused downloaded files"
+
+[projects.color_picker]
+name = "Pixel Art Color Picker"
+language = "Processing"
+brief = "Helper program for the math of pixel art coloring"
+
+[projects.gw2_tradingpost]
+name = "Guild Wars 2 Trading Post Analyzer"
+language = "Jupyter Notebook"
+brief = "Notebook to find and exploit trades on an MMO"
+summary = """
+	This notebook used public APIs to find profitable trades. \
+	It searched for any items worth more than the sum of their parts, \
+	after accounting for buying and selling tax.
+"""
+
+[projects.redstone_arsenal]
+name = "Patch for Redstone Arsenal"
+language = "Jupyter Notebook"
+brief = "Script to parse and modify java bytecode"
+summary = """
+	Redstone Arsenal is a minecraft mod. I didn't have the \
+	minecraft development environment set up, so I wrote a script \
+	to edit the mod. The script took some transformations, and \
+	searched several class files for matches. It then applied the \
+	transforms and adjusted the constants table and integer sizes \
+	accordingly. It also substituted functions with hand-written \
+	jvm bytecode.
+"""
+
+[projects.knights_dialer]
+name = "Knight's Dialar Puzzle"
+language = "Jupyter Notebook" # TODO: Just python?
+brief = "Solves the Kight's Dialar puzzle"
+
+[projects.lua-rs]
+name = "Lua Interpreter"
+language = "Rust"
+brief = "A lua script interpreter in pure rust"
+
+[projects.pipelined_mips]
+name = "Pipelined Mips CPU"
+language = "Verilog"
+brief = "A fully functional 32bit MIPS CPU core"
+
+[projects.molek_solitaire]
+name = "Solver for Molek Solitaire"
+language = "Rust"
+brief = "Solver for a very hard solitaire game from Zachtronics"
+
+[projects.masyu_solver]
+name = "Solver for Masyu"
+language = "?" # TODO: What language is this?
+brief = "Rule-based solver for Masyu puzzles"
+
+[projects.sudoku_interactive]
+name = "Interactive Sudoku"
+language = "Java"
+brief = "A sudoku player that teaches the player advanced techniques"
+
+[projects.calculator]
+name = "Terminal Calculator"
+language = "Rust"
+brief = "A simple infix calculator"
+
+[projects.caracassone]
+name = "Caracassone"
+language = "Java"
+brief = "Digital form of the board game"
+

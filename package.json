@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "bulma": "^0.9.1",
-    "http-server": "^0.12.3"
+    "mustache": "^4.0.1",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "sass": "^1.29.0"
   }
 }
