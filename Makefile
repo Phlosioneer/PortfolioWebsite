@@ -8,7 +8,7 @@ TEMPLATES:=$(wildcard src/templates/*.mustache)
 all: $(WEB)
 
 run: all
-	npx http-server src/web -o --cors -c-1
+	node src/script/host.js
 
 clean:
 	rm -rf src/web/*

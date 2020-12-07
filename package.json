@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bulma": "^0.9.1",
+    "express": "^4.17.1",
     "mustache": "^4.0.1",
     "toml": "^3.0.0"
   },
