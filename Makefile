@@ -12,14 +12,16 @@ run: all
 
 clean:
 	rm -rf src/web/*
+	rm -rf .tmp/
 
-src/web/index.html: $(TEMPLATES)
+src/web/index.html: $(TEMPLATES) src/script/generator.js
 	node src/script/generator.js
 
 src/web/%.css: src/sass/%.scss
+	@mkdir -p $(dir .tmp/$@)
+	@cp $@ .tmp/$@
 	npx sass $^ $@
-
-src/web/%.css: src/sass/%.sass
-	npx sass $^ $@
+	@echo "<old< --- >new>"
+	@-diff .tmp/$@ $@
 
 .PHONY: all, run, clean
