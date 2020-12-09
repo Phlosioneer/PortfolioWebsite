@@ -1,5 +1,33 @@
 @charset "utf-8";
 
+// Color scheme
+$body-background-color: hsl(0%, 0%, 70%);
+
+// Halve the section vertical padding and move it into the margin, so
+// that consecutive sections look better.
+$section-padding: 1.5rem 1.5rem;
+$section-margin: 1.5rem 0rem;
+
 @import "../../node_modules/bulma/bulma.sass";
 
-$scheme-main: hsl(0%, 0%, 70%);
+.normal-project {
+	// Hover color for the not-featured projects' tile grid.
+	&:hover {
+		background: $primary-light;
+	}
+	// Match the enclosing card's curved corners.
+	border-radius: $card-radius;
+}
+
+// See $section-padding above.
+.section {
+	margin: $section-margin;
+}
+
+// Prevent tiles that are links from changing colors.
+a.tile {
+	color: inherit;
+	&:hover {
+		color: inherit;
+	}
+}

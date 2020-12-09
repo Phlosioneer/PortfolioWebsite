@@ -287,7 +287,7 @@ th:not([align]) {
 }
 
 html {
-  background-color: white;
+  background-color: #b3b3b3;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -10113,7 +10113,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 }
 
 .section {
-  padding: 3rem 1.5rem;
+  padding: 1.5rem 1.5rem;
 }
 @media screen and (min-width: 1024px) {
   .section.is-medium {
@@ -10127,6 +10127,24 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 .footer {
   background-color: #fafafa;
   padding: 3rem 1.5rem 6rem;
+}
+
+.normal-project {
+  border-radius: 0.25rem;
+}
+.normal-project:hover {
+  background: #ebfffc;
+}
+
+.section {
+  margin: 1.5rem 0rem;
+}
+
+a.tile {
+  color: inherit;
+}
+a.tile:hover {
+  color: inherit;
 }
 
 /*# sourceMappingURL=mystyles.css.map */

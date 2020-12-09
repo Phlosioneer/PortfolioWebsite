@@ -31,7 +31,6 @@ function generateFeaturedSection(featuredCardTemplate, featuredProjects) {
 
 function generateNormalSection(normalCardTemplate, normalProjects) {
 	const ancestorTile = '<div class="tile is-ancestor">';
-	const columnTile = '<div class="tile is-vertical is-parent">';
 	let ret = ancestorTile;
 	for (let i = 0; i < normalProjects.length; i++) {
 		if (i != 0 && i % 4 == 0) {
@@ -39,7 +38,7 @@ function generateNormalSection(normalCardTemplate, normalProjects) {
 		}
 		const project = normalProjects[i];
 		const rendered = mustache.render(normalCardTemplate, project);
-		ret += columnTile + rendered + '</div>';
+		ret += rendered;
 	}
 	ret += '</div>';
 	return ret;
