@@ -20,9 +20,7 @@ async function readTemplates() {
 	};
 }
 
-// Transform the human-friendly config file into a more computer-friendly
-// format.
-function organizeConfigFile(config) {
+function validateConfigFile(config) {
 	// Validate everything is categorized correctly.
 	const allProjectNames = Object.keys(config.projects);
 	allProjectNames.forEach(name => {
@@ -37,8 +35,13 @@ function organizeConfigFile(config) {
 			throw "Project " + name + " is both featured and not_featured";
 		}
 	});
-	
+}
+
+// Transform the human-friendly config file into a more computer-friendly
+// format.
+function buildPage(config) {
 	// Normalize data.
+	const allProjectNames = Object.keys(config.projects);
 	allProjectNames.forEach(name => {
 		const project = config.projects[name];
 		if (typeof project.language === "string") {
@@ -52,32 +55,39 @@ function organizeConfigFile(config) {
 	config.featured.forEach(name => featured.push(config.projects[name]));
 	config.not_featured.forEach(name => normal.push(config.projects[name]));
 
-	// Organize the normal projects into rows of 4.
-	const normalTable = [];
-	var row = [];
-	normal.forEach(project => {
-		row.push(project);
-		if (row.length == 4) {
-			normalTable.push({"normalProjects": row});
-			row = [];
-		}
-	});
-
 	return {
 		"featured": featured,
-		"normalTable": normalTable
+		"normalTable": buildNormalProjectSection(normal)
 	};
 }
 
+function buildNormalProjectSection(projects) {
+	// Organize the normal projects into rows of 4.
+	const table = [];
+	var row = [];
+	projects.forEach(project => {
+		row.push(project);
+		if (row.length == 4) {
+			table.push({"normalProjects": row});
+			row = [];
+		}
+	});
+	return table;
+}
+
 async function main() {
-	const rawProjectData = readProjectData();
 	const templatePromises = readTemplates();
-	const projectData = organizeConfigFile(await rawProjectData);
+	const rawProjectData = await readProjectData();
+	validateConfigFile(rawProjectData);
+	const projectData = buildPage(rawProjectData);
 	const templates = await templatePromises;
 	const fullPage = mustache.render(templates.index, projectData, templates);
 	await fs.writeFile("src/web/index.html", fullPage);
 	console.log("src/web/index.html generated.");
 }
 
-main();
+main().catch(error => {
+	console.error(error);
+	process.exit(1);
+});
 
