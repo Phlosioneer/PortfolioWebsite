@@ -15,33 +15,9 @@ async function readTemplates() {
 	const normal = fs.readFile('src/templates/normalCard.mustache', options);
 	return {
 		"index": await index,
-		"featured": await featured,
-		"normal": await normal
+		"featuredCard": await featured,
+		"normalCard": await normal
 	};
-}
-
-function generateFeaturedSection(featuredCardTemplate, featuredProjects) {
-	let ret = '';
-	featuredProjects.forEach(project => {
-		const rendered = mustache.render(featuredCardTemplate, project);
-		ret += '<div class="column">' + rendered + '</div>';
-	});
-	return ret;
-}
-
-function generateNormalSection(normalCardTemplate, normalProjects) {
-	const ancestorTile = '<div class="tile is-ancestor">';
-	let ret = ancestorTile;
-	for (let i = 0; i < normalProjects.length; i++) {
-		if (i != 0 && i % 4 == 0) {
-			ret += '</div>' + ancestorTile;
-		}
-		const project = normalProjects[i];
-		const rendered = mustache.render(normalCardTemplate, project);
-		ret += rendered;
-	}
-	ret += '</div>';
-	return ret;
 }
 
 // Transform the human-friendly config file into a more computer-friendly
@@ -76,9 +52,20 @@ function organizeConfigFile(config) {
 	config.featured.forEach(name => featured.push(config.projects[name]));
 	config.not_featured.forEach(name => normal.push(config.projects[name]));
 
+	// Organize the normal projects into rows of 4.
+	const normalTable = [];
+	var row = [];
+	normal.forEach(project => {
+		row.push(project);
+		if (row.length == 4) {
+			normalTable.push({"normalProjects": row});
+			row = [];
+		}
+	});
+
 	return {
 		"featured": featured,
-		"normal": normal
+		"normalTable": normalTable
 	};
 }
 
@@ -87,12 +74,7 @@ async function main() {
 	const templatePromises = readTemplates();
 	const projectData = organizeConfigFile(await rawProjectData);
 	const templates = await templatePromises;
-	featuredSection = generateFeaturedSection(templates.featured, projectData.featured);
-	normalSection = generateNormalSection(templates.normal, projectData.normal);
-	const fullPage = mustache.render(templates.index, {
-		"featured": featuredSection,
-		"normal": normalSection
-	});
+	const fullPage = mustache.render(templates.index, projectData, templates);
 	await fs.writeFile("src/web/index.html", fullPage);
 	console.log("src/web/index.html generated.");
 }

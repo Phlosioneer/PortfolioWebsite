@@ -28,13 +28,23 @@
 	</section>
 	<section class="section">
 		<div class="columns">
-			{{&featured}}
+			{{#featured}}
+				<div class="column">
+					{{>featuredCard}}
+				</div>
+			{{/featured}}
 		</div>
 	</section>
 	<section class="section">
 		<div class="card">
 			<div class="card-content">
-				{{&normal}}
+				{{#normalTable}}
+					<div class="tile is-ancestor">
+						{{#normalProjects}}
+							{{>normalCard}}
+						{{/normalProjects}}
+					</div>
+				{{/normalTable}}
 			</div>
 		</div>
 	</section>
