@@ -10130,20 +10130,29 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 }
 
 .normal-project {
+  transition: background 0.5s ease;
   border-radius: 0.25rem;
 }
 .normal-project:hover {
   background: #ebfffc;
 }
 
+.featured-project {
+  transition: transform 0.5s ease;
+}
+.featured-project:hover {
+  transform: scale(1.05);
+}
+
 .section {
   margin: 1.5rem 0rem;
 }
 
-a.tile {
+a.like-div {
   color: inherit;
+  display: block;
 }
-a.tile:hover {
+a.like-div:hover {
   color: inherit;
 }
 

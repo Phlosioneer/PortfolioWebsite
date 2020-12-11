@@ -8,9 +8,13 @@ $body-background-color: hsl(0%, 0%, 70%);
 $section-padding: 1.5rem 1.5rem;
 $section-margin: 1.5rem 0rem;
 
+// Duration for all transitions.
+$transition-duration: 0.5s;
+
 @import "../../node_modules/bulma/bulma.sass";
 
 .normal-project {
+	transition: background $transition-duration ease;
 	// Hover color for the not-featured projects' tile grid.
 	&:hover {
 		background: $primary-light;
@@ -19,15 +23,26 @@ $section-margin: 1.5rem 0rem;
 	border-radius: $card-radius;
 }
 
+.featured-project {
+	transition: transform $transition-duration ease;
+
+	// Expand the card slightly on mouseover.
+	&:hover {
+		transform: scale(1.05);
+	}
+}
+
 // See $section-padding above.
 .section {
 	margin: $section-margin;
 }
 
-// Prevent tiles that are links from changing colors.
-a.tile {
+// Converts <a> elements into <div> styling, except for the cursor change.
+a.like-div {
 	color: inherit;
+	display: block;
 	&:hover {
 		color: inherit;
 	}
 }
+
