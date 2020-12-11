@@ -1,6 +1,12 @@
-fs = require('fs/promises');
-toml = require('toml');
-mustache = require('mustache');
+"use strict";
+
+const path = require('path');
+const fs = require('fs/promises');
+const toml = require('toml');
+const mustache = require('mustache');
+
+const templateDir = process.argv[2];
+const outputDir = process.argv[3];
 
 async function readProjectData() {
 	const raw = await fs.readFile('resources/projects.toml');
@@ -10,9 +16,9 @@ async function readProjectData() {
 
 async function readTemplates() {
 	const options = { "encoding": "utf8" };
-	const index = fs.readFile('src/templates/index.mustache', options);
-	const featured = fs.readFile('src/templates/featuredCard.mustache', options);
-	const normal = fs.readFile('src/templates/normalCard.mustache', options);
+	const index = fs.readFile(path.join(templateDir, 'index.mustache'), options);
+	const featured = fs.readFile(path.join(templateDir, 'featuredCard.mustache'), options);
+	const normal = fs.readFile(path.join(templateDir, 'normalCard.mustache'), options);
 	return {
 		"index": await index,
 		"featuredCard": await featured,
@@ -82,8 +88,9 @@ async function main() {
 	const projectData = buildPage(rawProjectData);
 	const templates = await templatePromises;
 	const fullPage = mustache.render(templates.index, projectData, templates);
-	await fs.writeFile("src/web/index.html", fullPage);
-	console.log("src/web/index.html generated.");
+	const outPath = path.join(outputDir, "index.html");
+	await fs.writeFile(outPath, fullPage);
+	console.log(outPath + " generated.");
 }
 
 main().catch(error => {

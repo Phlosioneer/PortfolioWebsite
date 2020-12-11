@@ -4,10 +4,10 @@ const path = require('path');
 const express = require("express");
 const app = express();
 
-const project_root = path.dirname(path.dirname(__dirname));
+const projectRoot = process.argv[2];
 
 const sendFileOptions = {
-	root: project_root
+	root: projectRoot
 };
 
 app.use("/", (req, resp, next) => {
@@ -18,13 +18,13 @@ app.use("/", (req, resp, next) => {
 	next();
 });
 
-app.get("/", (req, resp) => resp.sendFile("src/web/index.html", sendFileOptions));
-app.use("/", express.static("src/web"));
+app.get("/", (req, resp) => resp.sendFile("generated/web/index.html", sendFileOptions));
+app.use("/", express.static("generated/web"));
 app.use("/node_modules/bulma/sass", express.static("node_modules/bulma/sass"));
 app.get("/node_modules/bulma/bulma.sass", (req, resp) => {
 	resp.sendFile("node_modules/bulma/bulma.sass", sendFileOptions);
 });
-app.use("/sass", express.static("src/sass"));
+app.use("/src/sass", express.static("src/sass"));
 
 app.use("/", (req) => console.log("Unhandled request!", {
 	url: req.originalUrl,
