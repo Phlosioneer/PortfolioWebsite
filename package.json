@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@splidejs/splide": "^2.4.21",
     "bulma": "^0.9.1",
     "express": "^4.17.1",
     "mustache": "^4.0.1",

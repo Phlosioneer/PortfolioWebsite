@@ -20,6 +20,10 @@ app.use("/", (req, resp, next) => {
 
 app.get("/", (req, resp) => resp.sendFile("generated/web/index.html", sendFileOptions));
 app.use("/", express.static("generated/web"));
+app.get("/splide.js", (req, resp) => resp.sendFile("node_modules/@splidejs/splide/dist/js/splide.js", sendFileOptions));
+app.get("/splide.min.css", (req, resp) => resp.sendFile("node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css", sendFileOptions));
+
+// SASS debugging stuff
 app.use("/node_modules/bulma/sass", express.static("node_modules/bulma/sass"));
 app.get("/node_modules/bulma/bulma.sass", (req, resp) => {
 	resp.sendFile("node_modules/bulma/bulma.sass", sendFileOptions);

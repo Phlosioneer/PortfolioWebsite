@@ -45,7 +45,7 @@ function validateConfigFile(config) {
 
 // Transform the human-friendly config file into a more computer-friendly
 // format.
-function buildPage(config) {
+function buildIndexPage(config) {
 	// Normalize data.
 	const allProjectNames = Object.keys(config.projects);
 	allProjectNames.forEach(name => {
@@ -85,7 +85,7 @@ async function main() {
 	const templatePromises = readTemplates();
 	const rawProjectData = await readProjectData();
 	validateConfigFile(rawProjectData);
-	const projectData = buildPage(rawProjectData);
+	const projectData = buildIndexPage(rawProjectData);
 	const templates = await templatePromises;
 	const fullPage = mustache.render(templates.index, projectData, templates);
 	const outPath = path.join(outputDir, "index.html");
