@@ -14,16 +14,25 @@ async function readProjectData() {
 	return parsed;
 }
 
+// Read all mustache files in the templates directory.
 async function readTemplates() {
 	const options = { "encoding": "utf8" };
-	const index = fs.readFile(path.join(templateDir, 'index.mustache'), options);
-	const featured = fs.readFile(path.join(templateDir, 'featuredCard.mustache'), options);
-	const normal = fs.readFile(path.join(templateDir, 'normalCard.mustache'), options);
-	return {
-		"index": await index,
-		"featuredCard": await featured,
-		"normalCard": await normal
-	};
+	const templateFiles = await fs.opendir(templateDir);
+	const templates = {};
+	const promises = [];
+	for await (const template of templateFiles) {
+		if (template.name.endsWith(".mustache")) {
+			const baseName = template.name.replace(".mustache", "");
+			const filePath = path.join(templateDir, template.name);
+			const promise = fs.readFile(filePath, options).then(contents => templates[baseName] = contents);
+			promises.push(promise);
+		}
+	}
+
+	// Wait for all the files to be read and added to the templates object.
+	await Promise.all(promises);
+	
+	return templates;
 }
 
 function validateConfigFile(config) {
@@ -48,11 +57,12 @@ function validateConfigFile(config) {
 function buildIndexPage(config) {
 	// Normalize data.
 	const allProjectNames = Object.keys(config.projects);
-	allProjectNames.forEach(name => {
-		const project = config.projects[name];
+	allProjectNames.forEach(id => {
+		const project = config.projects[id];
 		if (typeof project.language === "string") {
 			project.language = [project.language];
 		}
+		project.id = id;
 	});
 
 	// Categorize projects.
@@ -62,8 +72,9 @@ function buildIndexPage(config) {
 	config.not_featured.forEach(name => normal.push(config.projects[name]));
 
 	return {
-		"featured": featured,
-		"normalTable": buildNormalProjectSection(normal)
+		featured: featured,
+		normalTable: buildNormalProjectSection(normal),
+		isIndex: true,
 	};
 }
 
@@ -81,16 +92,45 @@ function buildNormalProjectSection(projects) {
 	return table;
 }
 
+function buildProjectPage(project) {
+	const ret = {
+		isProject: true,
+	};
+	return Object.assign(ret, project);
+}
+
 async function main() {
 	const templatePromises = readTemplates();
-	const rawProjectData = await readProjectData();
-	validateConfigFile(rawProjectData);
-	const projectData = buildIndexPage(rawProjectData);
+	const config = await readProjectData();
+	validateConfigFile(config);
+	const projects = Object.values(config.projects);
+
+	var pages = [{
+		view: buildIndexPage(config),
+		template: "index",
+		outFile: "index.html"
+	}];
+	pages = pages.concat(projects.map(project => {return {
+		view: buildProjectPage(project),
+		template: "projectPage",
+		outFile: path.join("projects", project.id + ".html"),
+	}}));
+	
+	await fs.mkdir(path.join(outputDir, "projects"), {recursive: true});
 	const templates = await templatePromises;
-	const fullPage = mustache.render(templates.index, projectData, templates);
-	const outPath = path.join(outputDir, "index.html");
-	await fs.writeFile(outPath, fullPage);
-	console.log(outPath + " generated.");
+	const pagePromises = pages.map(async page => {
+		if (!(page.template in templates)) {
+			throw {
+				message: "Invalid template name",
+				name: page.template,
+				templates: templates
+			};
+		}
+		const rendered = mustache.render(templates[page.template], page.view, templates);
+		await fs.writeFile(path.join(outputDir, page.outFile), rendered);
+		console.log(page.outFile + " generated.");
+	});
+	await Promise.all(pagePromises);
 }
 
 main().catch(error => {

@@ -27,7 +27,7 @@ run: all
 clean:
 	rm -rf generated
 
-$(GENERATED_HTML_FILES) &: $(TEMPLATES) $(GENERATOR)
+$(GENERATED_HTML_FILES) &: $(TEMPLATES) $(GENERATOR) resources/projects.toml
 	@mkdir -p $(WEB_OUTPUT_DIR)
 	node $(GENERATOR) "$(abspath $(TEMPLATE_DIR))" "$(abspath $(WEB_OUTPUT_DIR))"
 
