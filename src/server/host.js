@@ -20,6 +20,7 @@ app.use("/", (req, resp, next) => {
 
 app.get("/", (req, resp) => resp.sendFile("generated/web/index.html", sendFileOptions));
 app.use("/", express.static("generated/web"));
+app.use("/", express.static("resources/images"));
 app.get("/splide.js", (req, resp) => resp.sendFile("node_modules/@splidejs/splide/dist/js/splide.js", sendFileOptions));
 app.get("/splide.min.css", (req, resp) => resp.sendFile("node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css", sendFileOptions));
 
@@ -29,7 +30,7 @@ app.get("/node_modules/bulma/bulma.sass", (req, resp) => {
 	resp.sendFile("node_modules/bulma/bulma.sass", sendFileOptions);
 });
 app.use("/src/sass", express.static("src/sass"));
-
+app.get("/favicon.ico", (req, resp) => resp.sendStatus(404));
 app.use("/", (req) => console.log("Unhandled request!", {
 	url: req.originalUrl,
 	method: req.method
