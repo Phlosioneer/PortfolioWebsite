@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO: Check the width and height of images and add those to image elements.
+
 const path = require('path');
 const fs = require('fs/promises');
 const toml = require('toml');

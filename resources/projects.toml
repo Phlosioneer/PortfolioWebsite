@@ -28,8 +28,10 @@ not_featured = [
 [projects.penguin]
 name = "Penguin"
 language = "Java"
+dates = [2012, 2020]
 brief = "A java game about a sliding penguin"
-image = "placeholder.png"
+image = "/placeholder.png"
+github = ""
 desc = """
 <p><i>Penguin</i> was a small tile-based puzzle game I first made in my senior year of
 high school to help with college admissions. It was based on the sliding ice puzzles
@@ -66,11 +68,9 @@ image = "placeholder.png"
 
 [projects.connect_four]
 name = "Connect Four"
-language = [] # Languages will be listed in description
+language = "Several" # Languages will be listed in description
 brief = "Same game, in several languages"
 image = "placeholder.png"
-
-
 
 [projects.portfolio]
 name = "Portfolio Website"
@@ -106,24 +106,24 @@ brief = "Helper program for the math of pixel art coloring"
 name = "Guild Wars 2 Trading Post Analyzer"
 language = "Jupyter Notebook"
 brief = "Notebook to find and exploit trades on an MMO"
-summary = """
-	This notebook used public APIs to find profitable trades. \
-	It searched for any items worth more than the sum of their parts, \
-	after accounting for buying and selling tax.
+desc = """
+This notebook used public APIs to find profitable trades.
+It searched for any items worth more than the sum of their parts,
+after accounting for buying and selling tax.
 """
 
 [projects.redstone_arsenal]
 name = "Patch for Redstone Arsenal"
 language = "Jupyter Notebook"
 brief = "Script to parse and modify java bytecode"
-summary = """
-	Redstone Arsenal is a minecraft mod. I didn't have the \
-	minecraft development environment set up, so I wrote a script \
-	to edit the mod. The script took some transformations, and \
-	searched several class files for matches. It then applied the \
-	transforms and adjusted the constants table and integer sizes \
-	accordingly. It also substituted functions with hand-written \
-	jvm bytecode.
+desc = """
+<p>Redstone Arsenal is a minecraft mod. I didn't have the 
+minecraft development environment set up, so I wrote a script 
+to edit the mod. The script took some transformations, and 
+searched several class files for matches. It then applied the 
+transforms and adjusted the constants table and integer sizes 
+accordingly. It also substituted functions with hand-written 
+jvm bytecode.</p>
 """
 
 [projects.knights_dialer]

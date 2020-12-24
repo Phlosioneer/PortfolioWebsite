@@ -12,7 +12,6 @@ $section-margin: 1.5rem 0rem;
 $transition-duration: 0.5s;
 
 @import "../../node_modules/bulma/bulma.sass";
-@import "../../node_modules/bulma-carousel/src/sass/index.sass";
 
 .normal-project {
 	transition: background $transition-duration ease;
@@ -45,5 +44,10 @@ a.like-div {
 	&:hover {
 		color: inherit;
 	}
+}
+
+// Cap the size of media-object images
+.media-left.has-image {
+	max-width: min(10%, 128px);
 }
 
