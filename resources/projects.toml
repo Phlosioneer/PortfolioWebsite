@@ -59,23 +59,82 @@ name = "Zork"
 language = [ "C", "Rust" ]
 brief = "Project to translate zork into Rust"
 image = "placeholder.png"
+desc = """
+<p><i>Zork</i> is a classic text-based adventure game, and this project
+partially re-implemented it in Rust. The original C source for the game is
+available on the internet, but it's poorly commented with minimal variable
+names. The first goal of the project was to learn more about the C Foreign Function
+Interface (FFI) by implementing some functions in Rust and then linking the
+binaries together. The second goal of the project was to practice reverse-
+engineering algorithms and legacy code.</p>
+
+<p>I made an effort to not just blindly translate the C into Rust for each
+function. Instead, I figured out what the function was doing, its purpose in
+the game, and refactored the code as I translated it.</p>
+
+<p>An issue that appeared early on was the difficulty of testing changes. I
+was able to make unit tests for individual Rust functions, but integration
+tests were done by manually playing the game. That didn't even work very well&semi;
+sometimes replacing a function would cause bugs to appear in code I hadn't even
+looked at yet. To address these issues, I created an integration testing program
+that recorded manual inputs and the original program's output text. It then ran
+the C and Rust hybrid binary and checked the output against its recordings. With
+proper integration testing set up, I made good progress.</p>
+
+<p>I stopped the project when I reached the command processing code. It was too
+tangled in unwritten assumptions, indirection, and hacky algorithms for me to
+rewrite.</p>
+"""
 
 [projects.lights_out]
 name = "Lights Out"
 language = "Javascript"
 brief = "Classic puzzle game as a web page"
 image = "placeholder.png"
+desc = """
+<p><i>Lights Out</i> was a game that I created to practice making web pages using React.
+It's a simple implementation of the classic handheld game Lights Out. The goal of
+the game is to reach a fully lit-up board. Lighting up a square also lights its
+adjacent and diagonal neighbors. It's a completed game, and can be played <a href="TODO">here</a></p>
+
+<p>I used this project to experiment with babel, JSX, and React add-on packages
+for managing state. It was just complicated enough to be non-trivial to implement.</p>"""
 
 [projects.connect_four]
 name = "Connect Four"
 language = "Several" # Languages will be listed in description
 brief = "Same game, in several languages"
 image = "placeholder.png"
+desc = """
+<p><i>Connect Four</i> was a multi-language project. I implemented the game
+Connect Four using standard text I/O in several languages. Similar to the
+Rosetta Code project, the goal was to make the same thing in many languages to
+see the differences between how the languages operate, and how large or small
+each codebase was.</p>
+"""
 
 [projects.portfolio]
 name = "Portfolio Website"
 language = "Javascript"
 brief = "This website!"
+desc = """
+<p><i>My Portfolio</i> is this website that you're viewing right now. I
+created it from scratch in November and December of 2020, during the COVID-19
+pandemic. This website uses configuration files to describe each of my programming
+projects, and a node script to generate the static website from those config files.
+I use the templating language Mustache for splitting HTML into composable pieces,
+and I use ExpressJS for localhost development.</p>
+
+</p>A makefile manages the generator script and SCSS to CSS conversion. I decided
+to use Make for build management instead of webpack, gulp, or others because of
+familiarity and simplicity.</p>
+
+<p>One early goal for the project was to minimize the dependencies, and provide an
+extremely light-weight site. I decided to avoid React and other similar frameworks,
+and use Bulma and plain HTML for visual effects. Bulma is a pure-css library, making
+it very lightweight. I also decided to avoid JQuery, preferring built-in operations
+instead; and there are no polyfills, to keep the javascript minimal.</p>
+"""
 
 [projects.blue_lagoon]
 name = "Blue Lagoon"
@@ -86,6 +145,33 @@ brief = "Digital form of the board game"
 name = "JMaker"
 language = "Java"
 brief = "Build system hybrid between Make and Gradle"
+desc = """
+<p><i>JMaker</i> was born from frustration with using Gradle for managing java
+projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
+build files should only need to describe deviations from the default project
+structure. This philosophy works excellently for pure-java projects, but runs into
+problems if the project mixes in other languages or dynamically generated resources.
+It also has a hard time running arbitrary code as part of its build files. Although
+it uses a programming language to define them, it exposes an extremely small, minimal
+API, that's often undocumented. Finally, it can have difficulties building an accurate
+dependency graph for unusual project setups.</p>
+
+<p>GNU Make has the opposite philosophy; it offers some defaults, but assumes very
+little about how it's being used. However, makefiles are described using a very old
+DSL with strange corner cases and limitations. Notably, it has extreme difficulties
+handling commands, variable values, and file paths that include colons. The java
+command-line compiler (javac) makes use of colons in many of its commands, so Make
+has a hard time with java.</p>
+
+<p>JMaker was an effort to make a tool that could leverage the strengths of each,
+with fewer downsides. It would have used Lua to define its configuration and commands,
+but use a rule-based production system like Make. That would allow it to have a clear
+and well-defined dependency graph, with all the power of using an actual programming
+language for build files.</p>
+
+<p>I got very far with the project, but abandoned it when I stopped using java for
+new projects.</p>
+"""
 
 [projects.pentago]
 name = "Pentago"
