@@ -51,3 +51,7 @@ a.like-div {
 	max-width: min(10%, 128px);
 }
 
+// Make the navbar appear to take up space.
+.navbar + * {
+	margin-top: $navbar-height;
+}
