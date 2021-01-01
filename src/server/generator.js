@@ -4,8 +4,11 @@
 
 const path = require('path');
 const fs = require('fs/promises');
+const { promisify } = require('util');
+
 const toml = require('toml');
 const mustache = require('mustache');
+const imageSize = promisify(require('image-size'));
 
 const templateDir = process.argv[2];
 const outputDir = process.argv[3];
@@ -54,19 +57,47 @@ function validateConfigFile(config) {
 	});
 }
 
-// Transform the human-friendly config file into a more computer-friendly
-// format.
-function buildIndexPage(config) {
-	// Normalize data.
-	const allProjectNames = Object.keys(config.projects);
-	allProjectNames.forEach(id => {
-		const project = config.projects[id];
+// Create computed fields, normalize data, and cleanup values
+async function expandProjectData(config) {
+	// Computed id field
+	Object.keys(config.projects).forEach(id => config.projects[id].id = id);
+
+	// Normalize language field to always be an array.
+	const allProjects = Object.values(config.projects);
+	allProjects.forEach(project => {
 		if (typeof project.language === "string") {
 			project.language = [project.language];
 		}
-		project.id = id;
 	});
 
+	// Expand image from a string to an object
+	const imagesDir = path.join("resources", "images");
+	const imagePromises = allProjects.map(async project => {
+		if (!project.image) { return; }
+		project.image = { name: project.image };
+		const firstPath = path.join(imagesDir, project.id, project.image.name);
+		const secondPath = path.join(imagesDir, project.image.name);
+		try {
+			const dim = await imageSize(firstPath);
+			project.image.url = "/" + project.id + "/" + project.image.name;
+			project.image.width = dim.width;
+			project.image.height = dim.height;
+		} catch (e) {
+			if (e.code === "ENOENT") {
+				const dim = await imageSize(secondPath);
+				project.image.url = "/" + project.image.name;
+				project.image.width = dim.width;
+				project.image.height = dim.height;
+			}
+		}
+	});
+
+	await Promise.all(imagePromises);
+}
+
+// Transform the human-friendly config file into a more computer-friendly
+// format.
+function buildIndexPage(config) {
 	// Categorize projects.
 	const featured = [];
 	const normal = [];
@@ -105,6 +136,7 @@ async function main() {
 	const templatePromises = readTemplates();
 	const config = await readProjectData();
 	validateConfigFile(config);
+	await expandProjectData(config);
 	const projects = Object.values(config.projects);
 
 	var pages = [{

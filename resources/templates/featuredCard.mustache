@@ -1,7 +1,9 @@
-<a class="like-div card featured-project">
+<a class="like-div card featured-project" href="/projects/{{{id}}}.html">
 	<div class="card-image">
 		<figure class="image is-4by3">
-			<img src="https://bulma.io/images/placeholders/1280x960.png">
+			{{#image}}
+			<img src="{{{url}}}" width="{{width}}" height="{{height}}">
+			{{/image}}
 		</figure>
 	</div>
 	<div class="card-content">

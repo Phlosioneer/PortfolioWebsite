@@ -30,7 +30,7 @@ name = "Penguin"
 language = "Java"
 dates = [2012, 2020]
 brief = "A java game about a sliding penguin"
-image = "/placeholder.png"
+image = "placeholder.png"
 github = ""
 desc = """
 <p><i>Penguin</i> was a small tile-based puzzle game I first made in my senior year of
