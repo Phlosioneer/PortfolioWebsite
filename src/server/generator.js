@@ -71,28 +71,38 @@ async function expandProjectData(config) {
 	});
 
 	// Expand image from a string to an object
-	const imagesDir = path.join("resources", "images");
-	const imagePromises = allProjects.map(async project => {
-		if (!project.image) { return; }
-		project.image = { name: project.image };
-		const firstPath = path.join(imagesDir, project.id, project.image.name);
-		const secondPath = path.join(imagesDir, project.image.name);
-		try {
-			const dim = await imageSize(firstPath);
-			project.image.url = "/" + project.id + "/" + project.image.name;
-			project.image.width = dim.width;
-			project.image.height = dim.height;
-		} catch (e) {
-			if (e.code === "ENOENT") {
-				const dim = await imageSize(secondPath);
-				project.image.url = "/" + project.image.name;
-				project.image.width = dim.width;
-				project.image.height = dim.height;
-			}
-		}
-	});
+	const imagePromises = allProjects.filter(project => project.image)
+		.map(async project => project.image = resolveImage(project, project.image));
+
+	const screenshotPromises = allProjects.filter(project => project.screenshots)
+		.flatMap(project => project.screenshots.map(async screenshot => {
+			Object.assign(screenshot, await resolveImage(project, screenshot.image));
+		}));
 
 	await Promise.all(imagePromises);
+	await Promise.all(screenshotPromises);
+}
+
+// TODO: Error messages if an image can't be found!
+async function resolveImage(project, filename) {
+	const imagesDir = path.join("resources", "images");
+	const image = { name: filename };
+	const firstPath = path.join(imagesDir, project.id, filename);
+	const secondPath = path.join(imagesDir, filename);
+	try {
+		const dim = await imageSize(firstPath);
+		image.url = "/" + project.id + "/" + filename;
+		image.width = dim.width;
+		image.height = dim.height;
+	} catch (e) {
+		if (e.code === "ENOENT") {
+			const dim = await imageSize(secondPath);
+			image.url = "/" + filename;
+			image.width = dim.width;
+			image.height = dim.height;
+		}
+	}
+	return image;
 }
 
 // Transform the human-friendly config file into a more computer-friendly

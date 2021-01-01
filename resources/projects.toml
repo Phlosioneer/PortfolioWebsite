@@ -47,11 +47,11 @@ to the original, also in Processing.</p>
 """
 
 [[projects.penguin.screenshots]]
-url = "https://wiki.eclipse.org/images/b/bf/Jawherm-eclipse-javaee-perspective.png"
+image = "dummyScreenshot1.png"
 desc = "<p>Test screenshot 1.</p>"
 
 [[projects.penguin.screenshots]]
-url = "https://wiki.eclipse.org/images/8/81/Eclipse-widescreen-bwolfe.png"
+image = "dummyScreenshot2.png"
 desc = "<p>Test screenshot 2.</p>"
 
 [projects.zork]
