@@ -72,7 +72,7 @@ async function expandProjectData(config) {
 
 	// Expand image from a string to an object
 	const imagePromises = allProjects.filter(project => project.image)
-		.map(async project => project.image = resolveImage(project, project.image));
+		.map(async project => project.image = await resolveImage(project, project.image));
 
 	const screenshotPromises = allProjects.filter(project => project.screenshots)
 		.flatMap(project => project.screenshots.map(async screenshot => {

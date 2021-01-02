@@ -2,7 +2,7 @@
 # Use `make run` to start localhost web server.
 
 # Input variables
-WEB_FILES:=index.html mystyles.css
+WEB_FILES:=index.html mystyles.css $(notdir $(wildcard src/client/*))
 WEB_OUTPUT_DIR:=generated/web/
 TEMPLATE_DIR:=resources/templates/
 GENERATOR:=src/server/generator.js
@@ -40,5 +40,8 @@ $(WEB_OUTPUT_DIR)%.css: src/sass/%.scss
 	@# followed by an empty echo ignores the return value of diff and prints
 	@# nothing else. 
 	@diff $(TEMP_DIR)$*.css $@ || echo ""
+
+$(WEB_OUTPUT_DIR)%.js: src/client/%.js
+	cp $^ $@
 
 #.PHONY: all, run, clean

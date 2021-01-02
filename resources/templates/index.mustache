@@ -4,14 +4,21 @@
 	<link rel="stylesheet" href="/mystyles.css">
 	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
 	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script defer src="/scrollPositionWatcher.js"></script>
 	<title>Portfolio | Matthew Rogge</title>
 </head>
 <body>
 	{{>navbar}}
-	<section class="section" id="about">
-		<!-- About Me -->
+	<section class="section">
+		<div class="section-link" id="about"></div>
+		<div class="card">
+			<div class="card-content">
+				{{>aboutSection}}
+			</div>
+		</div>
 	</section>
-	<section class="section" id="projects">
+	<section class="section">
+		<div class="section-link" id="projects"></div>
 		<div class="columns">
 			{{#featured}}
 				<div class="column">

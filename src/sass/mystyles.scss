@@ -5,8 +5,9 @@ $body-background-color: hsl(0%, 0%, 70%);
 
 // Halve the section vertical padding and move it into the margin, so
 // that consecutive sections look better.
-$section-padding: 1.5rem 1.5rem;
+$section-padding-amount: 1.5rem;
 $section-margin: 1.5rem 0rem;
+$section-padding: $section-padding-amount $section-padding-amount;
 
 // Duration for all transitions.
 $transition-duration: 0.5s;
@@ -55,3 +56,10 @@ a.like-div {
 .navbar + * {
 	margin-top: $navbar-height;
 }
+
+// Correct the scroll anchor position by adding the section padding and the navbar
+// height.
+.section-link {
+	transform: translateY(-$navbar-height - $section-padding-amount);
+}
+
