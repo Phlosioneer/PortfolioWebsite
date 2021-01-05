@@ -8,6 +8,7 @@ featured = [
 
 not_featured = [
 	"portfolio",
+	"tiled_map_loader",
 	"blue_lagoon",
 	"jmaker",
 	"pentago",
@@ -33,26 +34,26 @@ brief = "A java game about a sliding penguin"
 image = "placeholder.png"
 github = ""
 desc = """
-<p><i>Penguin</i> was a small tile-based puzzle game I first made in my senior year of
+**Penguin** was a small tile-based puzzle game I first made in my senior year of
 high school to help with college admissions. It was based on the sliding ice puzzles
 of Pokemon's ice caves. The player controlled a penguin that could walk over ground, 
 and could slide over ice until it hit an object. The goal was to reach a door at the
 end of the level. Solutions involved paths that crossed over themselves multiple
-times.</p>
+times.
 
-<p>The project was done using Processing, a thin wrapper language around Java. It
+The project was done using Processing, a thin wrapper language around Java. It
 took approximately 20 hours to program and create assets. Unfortunately, the original 
 copy has been lost over the years. Since then I've made another version very similar
-to the original, also in Processing.</p>
+to the original, also in Processing.
 """
 
 [[projects.penguin.screenshots]]
 image = "dummyScreenshot1.png"
-desc = "<p>Test screenshot 1.</p>"
+desc = "Test screenshot 1."
 
 [[projects.penguin.screenshots]]
 image = "dummyScreenshot2.png"
-desc = "<p>Test screenshot 2.</p>"
+desc = "Test screenshot 2."
 
 [projects.zork]
 name = "Zork"
@@ -60,30 +61,30 @@ language = [ "C", "Rust" ]
 brief = "Project to translate zork into Rust"
 image = "placeholder.png"
 desc = """
-<p><i>Zork</i> is a classic text-based adventure game, and this project
+**Zork** is a classic text-based adventure game, and this project
 partially re-implemented it in Rust. The original C source for the game is
 available on the internet, but it's poorly commented with minimal variable
 names. The first goal of the project was to learn more about the C Foreign Function
 Interface (FFI) by implementing some functions in Rust and then linking the
 binaries together. The second goal of the project was to practice reverse-
-engineering algorithms and legacy code.</p>
+engineering algorithms and legacy code.
 
-<p>I made an effort to not just blindly translate the C into Rust for each
+I made an effort to not just blindly translate the C into Rust for each
 function. Instead, I figured out what the function was doing, its purpose in
-the game, and refactored the code as I translated it.</p>
+the game, and refactored the code as I translated it.
 
-<p>An issue that appeared early on was the difficulty of testing changes. I
+An issue that appeared early on was the difficulty of testing changes. I
 was able to make unit tests for individual Rust functions, but integration
 tests were done by manually playing the game. That didn't even work very well&semi;
 sometimes replacing a function would cause bugs to appear in code I hadn't even
 looked at yet. To address these issues, I created an integration testing program
 that recorded manual inputs and the original program's output text. It then ran
 the C and Rust hybrid binary and checked the output against its recordings. With
-proper integration testing set up, I made good progress.</p>
+proper integration testing set up, I made good progress.
 
-<p>I stopped the project when I reached the command processing code. It was too
+I stopped the project when I reached the command processing code. It was too
 tangled in unwritten assumptions, indirection, and hacky algorithms for me to
-rewrite.</p>
+rewrite.
 """
 
 [projects.lights_out]
@@ -92,13 +93,15 @@ language = "Javascript"
 brief = "Classic puzzle game as a web page"
 image = "placeholder.png"
 desc = """
-<p><i>Lights Out</i> was a game that I created to practice making web pages using React.
+**Lights Out** is a game that I created to practice making web pages using React.
 It's a simple implementation of the classic handheld game Lights Out. The goal of
 the game is to reach a fully lit-up board. Lighting up a square also lights its
-adjacent and diagonal neighbors. It's a completed game, and can be played <a href="TODO">here</a></p>
+adjacent and diagonal neighbors. It's a completed game, and can be played [right now.]
+(https://phlosioneer.github.io/react-lights-out/)
 
-<p>I used this project to experiment with babel, JSX, and React add-on packages
-for managing state. It was just complicated enough to be non-trivial to implement.</p>"""
+I used this project to experiment with babel, JSX, and React add-on packages
+for managing state. It was just complicated enough to be non-trivial to implement.
+"""
 
 [projects.connect_four]
 name = "Connect Four"
@@ -106,47 +109,84 @@ language = "Several" # Languages will be listed in description
 brief = "Same game, in several languages"
 image = "placeholder.png"
 desc = """
-<p><i>Connect Four</i> was a multi-language project. I implemented the game
+**Connect Four** was a multi-language project. I implemented the game
 Connect Four using standard text I/O in several languages. Similar to the
 Rosetta Code project, the goal was to make the same thing in many languages to
 see the differences between how the languages operate, and how large or small
-each codebase was.</p>
+each codebase was.
 """
+
+[[projects.connect_four.screenshots]]
+image = "placeholder.png"
+desc = """
+This is from the C implementation of Connect Four, for Windows. It uses the
+windows console API to switch the command prompt from OEM to utf-8, checks that
+the user's console font supports utf-8, and then uses the Box Drawing characters
+to draw the grid.
+
+<a class="github" href="..."></a>
+"""
+# TODO: Figure out how to style the github link differently.
 
 [projects.portfolio]
 name = "Portfolio Website"
 language = "Javascript"
 brief = "This website!"
 desc = """
-<p><i>My Portfolio</i> is this website that you're viewing right now. I
+**My Portfolio** is this website that you're viewing right now. I
 created it from scratch in November and December of 2020, during the COVID-19
 pandemic. This website uses configuration files to describe each of my programming
 projects, and a node script to generate the static website from those config files.
 I use the templating language Mustache for splitting HTML into composable pieces,
-and I use ExpressJS for localhost development.</p>
+and I use ExpressJS for localhost development.
 
-</p>A makefile manages the generator script and SCSS to CSS conversion. I decided
+A makefile manages the generator script and SCSS to CSS conversion. I decided
 to use Make for build management instead of webpack, gulp, or others because of
-familiarity and simplicity.</p>
+familiarity and simplicity.
 
-<p>One early goal for the project was to minimize the dependencies, and provide an
+One early goal for the project was to minimize the dependencies, and provide an
 extremely light-weight site. I decided to avoid React and other similar frameworks,
 and use Bulma and plain HTML for visual effects. Bulma is a pure-css library, making
 it very lightweight. I also decided to avoid JQuery, preferring built-in operations
-instead; and there are no polyfills, to keep the javascript minimal.</p>
+instead; and there are no polyfills, to keep the javascript minimal.
 """
 
 [projects.blue_lagoon]
 name = "Blue Lagoon"
 language = "Processing"
-brief = "Digital form of the board game"
+brief = "Digital implementation of the board game"
+desc = """
+**Blue Lagoon** was an attempt to build a digital version of the Blue Lagoon
+board game. During this project I experimented with using Tiled's map file format
+to handle UI elements and store all the game's data. I made a lot of progress with
+the assets and map file, but the project stalled while writing the code for the game.
+Using the map file for UI elements was not sustainable. The map file also just had
+too much data; the functions to parse the single file were getting unwieldy.
+
+To make more progress on the project, I would have to redo a lot of parsing code,
+split the game data into smaller files, and rewrite the UI. I decided to drop the
+project instead.
+
+As part of this project, I used my [TiledMapLoader](tiled_map_loader) library.
+"""
+
+[[projects.blue_lagoon.screenshots]]
+image = "placeholder.png"
+desc = """
+The main view. All of the various indicators on the top and left of the screen
+work, but have nothing to display. 
+"""
+
+[[projects.blue_lagoon.screnshots]]
+image = "placeholder.png"
+desc = ""
 
 [projects.jmaker]
 name = "JMaker"
 language = "Java"
 brief = "Build system hybrid between Make and Gradle"
 desc = """
-<p><i>JMaker</i> was born from frustration with using Gradle for managing java
+**JMaker** was born from frustration with using Gradle for managing java
 projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
 build files should only need to describe deviations from the default project
 structure. This philosophy works excellently for pure-java projects, but runs into
@@ -154,23 +194,25 @@ problems if the project mixes in other languages or dynamically generated resour
 It also has a hard time running arbitrary code as part of its build files. Although
 it uses a programming language to define them, it exposes an extremely small, minimal
 API, that's often undocumented. Finally, it can have difficulties building an accurate
-dependency graph for unusual project setups.</p>
+dependency graph for unusual project setups.
 
-<p>GNU Make has the opposite philosophy; it offers some defaults, but assumes very
+GNU Make has the opposite philosophy; it offers some defaults, but assumes very
 little about how it's being used. However, makefiles are described using a very old
 DSL with strange corner cases and limitations. Notably, it has extreme difficulties
 handling commands, variable values, and file paths that include colons. The java
 command-line compiler (javac) makes use of colons in many of its commands, so Make
-has a hard time with java.</p>
+has a hard time with java.
 
-<p>JMaker was an effort to make a tool that could leverage the strengths of each,
+JMaker was an effort to make a tool that could leverage the strengths of each,
 with fewer downsides. It would have used Lua to define its configuration and commands,
 but use a rule-based production system like Make. That would allow it to have a clear
 and well-defined dependency graph, with all the power of using an actual programming
-language for build files.</p>
+language for build files.
 
-<p>I got very far with the project, but abandoned it when I stopped using java for
-new projects.</p>
+I built JMaker as part of my [Blue Lagoon](blue_lagoon) project. Gradle wasn't
+able to understand some asset-generating scripts for tileset management. I got very
+far with the project, but abandoned it at the same time that I stopped working on
+Blue Lagoon.
 """
 
 [projects.pentago]
@@ -203,13 +245,13 @@ name = "Patch for Redstone Arsenal"
 language = "Jupyter Notebook"
 brief = "Script to parse and modify java bytecode"
 desc = """
-<p>Redstone Arsenal is a minecraft mod. I didn't have the 
+Redstone Arsenal is a minecraft mod. I didn't have the 
 minecraft development environment set up, so I wrote a script 
 to edit the mod. The script took some transformations, and 
 searched several class files for matches. It then applied the 
 transforms and adjusted the constants table and integer sizes 
 accordingly. It also substituted functions with hand-written 
-jvm bytecode.</p>
+jvm bytecode.
 """
 
 [projects.knights_dialer]
@@ -252,3 +294,14 @@ name = "Caracassone"
 language = "Java"
 brief = "Digital form of the board game"
 
+[projects.tiled_map_loader]
+name = "TiledMapLoader Library"
+language = "Java"
+brief = "Java library to read TMX and TSX files"
+desc = """
+**TiledMapLoader** is a library for parsing [Tiled's TMX/TSX file format]
+(https://www.mapeditor.org/). It is used my several of my other game projects,
+including [Blue Lagoon](blue_lagoon) and [Pentago](pentago). It's with Java 8
+compliance, because I used it in some of my Processing projects and Processing only
+supports Java 8.
+"""

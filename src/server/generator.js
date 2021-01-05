@@ -4,18 +4,27 @@
 
 const path = require('path');
 const fs = require('fs/promises');
-const { promisify } = require('util');
+const util = require('util');
 
 const toml = require('toml');
 const mustache = require('mustache');
-const imageSize = promisify(require('image-size'));
+const imageSize = util.promisify(require('image-size'));
+const showdown = require('showdown');
 
 const templateDir = process.argv[2];
 const outputDir = process.argv[3];
 
 async function readProjectData() {
 	const raw = await fs.readFile('resources/projects.toml');
-	const parsed = await toml.parse(raw);
+	var parsed;
+	try {
+		parsed = await toml.parse(raw);
+	} catch (e) {
+		throw {
+			message: "Error while parsing projects.toml",
+			error: e
+		};
+	}
 	return parsed;
 }
 
@@ -70,14 +79,46 @@ async function expandProjectData(config) {
 		}
 	});
 
-	// Expand image from a string to an object
+	// Expand the main image from a string to an object.
 	const imagePromises = allProjects.filter(project => project.image)
 		.map(async project => project.image = await resolveImage(project, project.image));
 
+	// Do the same for screenshots.
 	const screenshotPromises = allProjects.filter(project => project.screenshots)
 		.flatMap(project => project.screenshots.map(async screenshot => {
 			Object.assign(screenshot, await resolveImage(project, screenshot.image));
 		}));
+
+	// Convert markdown into html.
+	const converter = new showdown.Converter();
+	const markdownPrefix = '<div class="markdown">';
+	const markdownSuffix = '</div>';
+	allProjects.forEach(project => {
+		try {
+			project.desc = markdownPrefix + converter.makeHtml(project.desc) + markdownSuffix;
+		} catch (e) {
+			console.log("rethrowing top");
+			throw {
+				message: "Error while parsing markdown",
+				original: project.desc,
+				error: e
+			};
+		}
+		if (project.screenshots) {
+			project.screenshots.forEach(screenshot => {
+				try {
+					screenshot.desc = markdownPrefix + converter.makeHtml(screenshot.desc) + markdownSuffix;
+				} catch (e) {
+					console.log("rethrowing bottom");
+					throw {
+						message: "Error while parsing markdown",
+						original: screenshot.desc,
+						error: e
+					};
+				}
+			});
+		}
+	});
 
 	await Promise.all(imagePromises);
 	await Promise.all(screenshotPromises);
@@ -178,7 +219,7 @@ async function main() {
 }
 
 main().catch(error => {
-	console.error(error);
+	console.error(util.inspect(error, {depth: null, colors: true}));
 	process.exit(1);
 });
 
