@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/mystyles.css">
+	<link rel="stylesheet" href="/splide.min.css">
+	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
+	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script src="/splide.js"></script>
+	<title>Blue Lagoon | Portfolio | Matthew Rogge</title>
+</head>
+<body>
+	<nav class="navbar is-fixed-top">
+		<div class="navbar-brand">
+			<a role="button" class="navbar-burger">
+				<!-- Three empty spans to draw the burger icon -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+		<div class="navbar-menu">
+			<div class="navbar-end">
+				<a class="navbar-item is-tab " href="/#about">About Me</a>
+				<a class="navbar-item is-tab is-active" href="/#projects">Projects</a>
+				<a class="navbar-item is-tab " href="contact.html">Contact</a>
+				<a class="navbar-item" href="resume.pdf">Resume&nbsp;<i class="fas fa-external-link-alt"></i></a></div>
+		</div>
+	</nav>
+	<div class="section">
+		<div class="card">
+			<div class="card-content">
+				<div class="media">
+					<div class="media-content">
+						<h1 class="title">Blue Lagoon</h1>
+						<h2 class="subtitle">Digital implementation of the board game</h2>
+						<div class="content"><div class="markdown"><p><strong>Blue Lagoon</strong> was an attempt to build a digital version of the Blue Lagoon
+board game. During this project I experimented with using Tiled's map file format
+to handle UI elements and store all the game's data. I made a lot of progress with
+the assets and map file, but the project stalled while writing the code for the game.
+Using the map file for UI elements was not sustainable. The map file also just had
+too much data; the functions to parse the single file were getting unwieldy.</p>
+<p>To make more progress on the project, I would have to redo a lot of parsing code,
+split the game data into smaller files, and rewrite the UI. I decided to drop the
+project instead.</p>
+<p>As part of this project, I used my <a href="tiled_map_loader">TiledMapLoader</a> library.</p></div></div>
+					</div>
+					<!-- TODO: A nice-looking vertical dividor -->
+					<div class="media-right">			
+						<h3>Language:</h3><span><a>Processing</a><!-- TODO: Outgoing-link symbol --></span>
+						<h3>Years:</h3><span>2012, 2020</span><!-- TODO: Make a config option for this -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="card">
+			<div class="splide">
+				<div class="splide__track">
+					<ul class="splide__list">
+						<li class="columns splide__slide">
+							<div class="column">
+								<img src="/placeholder.png" width="1280" height="960">
+							</div>
+							<div class="column">
+								<div class="content">
+									<div class="markdown"><p>This is what the board looks like in-game. All of the various indicators on the top
+and left of the screen work, but have nothing to display. The board is made of hex
+tiles that highlight when the mouse is over them.</p></div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		new Splide('.splide').mount();
+	</script>
+</body>

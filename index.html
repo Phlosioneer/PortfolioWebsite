@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css">
+	<link rel="stylesheet" href="/mystyles.css">
+	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
+	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script defer src="/scrollPositionWatcher.js"></script>
+	<title>Portfolio | Matthew Rogge</title>
 </head>
 <body>
 	<nav class="navbar is-fixed-top">
@@ -15,163 +19,227 @@
 		</div>
 		<div class="navbar-menu">
 			<div class="navbar-end">
-				<a class="navbar-item is-tab is-active">About Me</a>
-				<a class="navbar-item is-tab">Projects</a>
-				<a class="navbar-item is-tab">Contact</a>
-				<a class="navbar-item">Resume</a> <!-- TODO: Add "external link" icon, probably from fontAwesome. -->
-			</div>
+				<a class="navbar-item is-tab is-active" href="/#about">About Me</a>
+				<a class="navbar-item is-tab " href="/#projects">Projects</a>
+				<a class="navbar-item is-tab " href="contact.html">Contact</a>
+				<a class="navbar-item" href="resume.pdf">Resume&nbsp;<i class="fas fa-external-link-alt"></i></a></div>
 		</div>
 	</nav>
 	<section class="section">
-		<!-- About Me -->
+		<div class="section-link" id="about"></div>
+		<div class="card">
+			<div class="card-content">
+				<h1 class="title">About Me</h1>
+				<p>My name is Matthew Rogge and I'm a Software Engineer.</p>
+
+				<p>I have a passion for learning programming languages and acquiring new skills. My education and experience put me in the unique position of being qualified to work on many kinds of software, from full stack development to bare metal assembly.</p>
+
+				<h2 class="subtitle">What does Software Development mean to me?</h2>
+
+				<p>I take software development very seriously. It is not just about the code. There is a complex process of design, implementation, and revision, with communication and teamwork woven into each step of the process.</p>
+
+				<h2 class="subtitle">What sets apart a Software <em>Engineer</em> from a Developer?</h2>
+
+				<p>Software engineers must consider the consequences of their design decisions. Safety critical code must be correct and well-tested the first time it's used. However, even seemingly unimportant decisions can have serious consequences. Engineers building recommendation algorithms must consider the social impact and biases of the algorithm. Security should be designed into programs from the start. Often, the privacy and security implications of a feature or algorithm are neglected. An example of this:  a service that indicates when a user is on vacation can be used by burglars to locate unoccupied houses.</p>
+
+				<p>TODO: Clean up!</p>
+
+			</div>
+		</div>
 	</section>
 	<section class="section">
-		<!-- Featured Projects -->
-		<!-- TODO: On tablet and mobile, use two columns. -->
+		<div class="section-link" id="projects"></div>
 		<div class="columns">
-			<div class="column">
-				<div class="card">
-					<div class="card-image">
-						<figure class="image is-4by3">
-							<img src="https://bulma.io/images/placeholders/1280x960.png">
-						</figure>
-					</div>
-					<div class="card-content">
-						<p class="title is-4">Project 1</p>
-						<div class="content">
-							In this project I made a small game.
+				<div class="column">
+					<a class="like-div card featured-project" href="/projects/penguin.html">
+						<div class="card-image">
+							<figure class="image is-4by3">
+								<img src="/placeholder.png" width="1280" height="960">
+							</figure>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="card-image">
-						<figure class="image is-4by3">
-							<img src="https://bulma.io/images/placeholders/1280x960.png">
-						</figure>
-					</div>
-					<div class="card-content">
-						<p class="title is-4">Project 2</p>
-						<div class="content">
-							In this project I made a small game.
+						<div class="card-content">
+							<p class="title is-4">Penguin</p>
+							<div class="content">A java game about a sliding penguin</div>
 						</div>
-					</div>
+					</a>
 				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="card-image">
-						<figure class="image is-4by3">
-							<img src="https://bulma.io/images/placeholders/1280x960.png">
-						</figure>
-					</div>
-					<div class="card-content">
-						<p class="title is-4">Project 3</p>
-						<div class="content">
-							In this project I made a small game.
+				<div class="column">
+					<a class="like-div card featured-project" href="/projects/tiled_map_loader.html">
+						<div class="card-image">
+							<figure class="image is-4by3">
+							</figure>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="card">
-					<div class="card-image">
-						<figure class="image is-4by3">
-							<img src="https://bulma.io/images/placeholders/1280x960.png">
-						</figure>
-					</div>
-					<div class="card-content">
-						<p class="title is-4">Project 4</p>
-						<div class="content">
-							In this project I made a small game.
+						<div class="card-content">
+							<p class="title is-4">TiledMapLoader Library</p>
+							<div class="content">Java library to read TMX and TSX files</div>
 						</div>
-					</div>
+					</a>
 				</div>
-			</div>
+				<div class="column">
+					<a class="like-div card featured-project" href="/projects/lights_out.html">
+						<div class="card-image">
+							<figure class="image is-4by3">
+							</figure>
+						</div>
+						<div class="card-content">
+							<p class="title is-4">Lights Out</p>
+							<div class="content">Classic puzzle game as a web page</div>
+						</div>
+					</a>
+				</div>
+				<div class="column">
+					<a class="like-div card featured-project" href="/projects/blue_lagoon.html">
+						<div class="card-image">
+							<figure class="image is-4by3">
+							</figure>
+						</div>
+						<div class="card-content">
+							<p class="title is-4">Blue Lagoon</p>
+							<div class="content">Digital implementation of the board game</div>
+						</div>
+					</a>
+				</div>
+		</div>
 	</section>
 	<section class="section">
-		<!-- Other Projects -->
-		<div class="columns">
-			<div class="column">
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 5</p>
-						<p>In this project I made a small game.</p>
+		<div class="card">
+			<div class="card-content">
+					<div class="tile is-ancestor">
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Portfolio Website</p>
+										<p>This website!</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Zork</p>
+										<p>Project to translate zork into Rust</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Covid Questionnaire</p>
+										<p>A Covid survey for an Orthodontist</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">JMaker</p>
+										<p>Build system hybrid between Make and Gradle</p>
+									</div>
+								</article>
+							</a>
 					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 9</p>
-						<p>In this project I made a small game.</p>
+					<div class="tile is-ancestor">
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Connect Four</p>
+										<p>Same game, in several languages</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Pentago</p>
+										<p>Digital form of the board game</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Download Hawk</p>
+										<p>Program to delete unused downloaded files</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Pixel Art Color Picker</p>
+										<p>Helper program for the math of pixel art coloring</p>
+									</div>
+								</article>
+							</a>
 					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 13</p>
-						<p>In this project I made a small game.</p>
+					<div class="tile is-ancestor">
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Guild Wars 2 Trading Post Analyzer</p>
+										<p>Notebook to find and exploit trades on an MMO</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Patch for Redstone Arsenal</p>
+										<p>Script to parse and modify java bytecode</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Knight&#39;s Dialar Puzzle</p>
+										<p>Solves the Kight&#39;s Dialar puzzle</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Lua Interpreter</p>
+										<p>A lua script interpreter in pure rust</p>
+									</div>
+								</article>
+							</a>
 					</div>
-				</article>
-			</div>
-			<div class="column">
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 6</p>
-						<p>In this project I made a small game.</p>
+					<div class="tile is-ancestor">
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Pipelined Mips CPU</p>
+										<p>A fully functional 32bit MIPS CPU core</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Solver for Molek Solitaire</p>
+										<p>Solver for a very hard solitaire game from Zachtronics</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Interactive Sudoku</p>
+										<p>A sudoku game that teaches the player advanced techniques</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Terminal Calculator</p>
+										<p>A simple infix calculator</p>
+									</div>
+								</article>
+							</a>
 					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 10</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 14</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-			</div>
-			<div class="column">
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 7</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 11</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 15</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-			</div>
-			<div class="column">
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 8</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 12</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
-				<article class="media">
-					<div class="media-content">
-						<p class="title is-4">Project 16</p>
-						<p>In this project I made a small game.</p>
-					</div>
-				</article>
 			</div>
 		</div>
 	</section>

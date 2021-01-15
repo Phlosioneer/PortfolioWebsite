@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/mystyles.css">
+	<link rel="stylesheet" href="/splide.min.css">
+	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
+	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script src="/splide.js"></script>
+	<title>JMaker | Portfolio | Matthew Rogge</title>
+</head>
+<body>
+	<nav class="navbar is-fixed-top">
+		<div class="navbar-brand">
+			<a role="button" class="navbar-burger">
+				<!-- Three empty spans to draw the burger icon -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+		<div class="navbar-menu">
+			<div class="navbar-end">
+				<a class="navbar-item is-tab " href="/#about">About Me</a>
+				<a class="navbar-item is-tab is-active" href="/#projects">Projects</a>
+				<a class="navbar-item is-tab " href="contact.html">Contact</a>
+				<a class="navbar-item" href="resume.pdf">Resume&nbsp;<i class="fas fa-external-link-alt"></i></a></div>
+		</div>
+	</nav>
+	<div class="section">
+		<div class="card">
+			<div class="card-content">
+				<div class="media">
+					<div class="media-content">
+						<h1 class="title">JMaker</h1>
+						<h2 class="subtitle">Build system hybrid between Make and Gradle</h2>
+						<div class="content"><div class="markdown"><p><strong>JMaker</strong> was born from frustration with using Gradle for managing java
+projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
+build files should only need to describe deviations from the default project
+structure. This philosophy works excellently for pure-java projects, but runs into
+problems if the project mixes in other languages or dynamically generated resources.
+It also has a hard time running arbitrary code as part of its build files. Although
+it uses a programming language to define them, it exposes an extremely small, minimal
+API, that's often undocumented. Finally, it can have difficulties building an accurate
+dependency graph for unusual project setups.</p>
+<p>GNU Make has the opposite philosophy; it offers some defaults, but assumes very
+little about how it's being used. However, makefiles are described using a very old
+DSL with strange corner cases and limitations. Notably, it has extreme difficulties
+handling commands, variable values, and file paths that include colons. The java
+command-line compiler (javac) makes use of colons in many of its commands, so Make
+has a hard time with java.</p>
+<p>JMaker was an effort to make a tool that could leverage the strengths of each,
+with fewer downsides. It would have used Lua to define its configuration and commands,
+but use a rule-based production system like Make. That would allow it to have a clear
+and well-defined dependency graph, with all the power of using an actual programming
+language for build files.</p>
+<p>I built JMaker as part of my <a href="blue_lagoon">Blue Lagoon</a> project. Gradle wasn't
+able to understand some asset-generating scripts for tileset management. I got very
+far with the project, but abandoned it at the same time that I stopped working on
+Blue Lagoon.</p></div></div>
+					</div>
+					<!-- TODO: A nice-looking vertical dividor -->
+					<div class="media-right">			
+						<h3>Language:</h3><span><a>Java</a><!-- TODO: Outgoing-link symbol --></span>
+						<h3>Years:</h3><span>2012, 2020</span><!-- TODO: Make a config option for this -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="card">
+			<div class="splide">
+				<div class="splide__track">
+					<ul class="splide__list">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		new Splide('.splide').mount();
+	</script>
+</body>
