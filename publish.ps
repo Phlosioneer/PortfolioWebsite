@@ -1,0 +1,18 @@
+
+# Expects the website's folder as a parameter
+if ( $args.Length == 0 )
+{
+	write-output "Expects path to subtree as first parameter"
+	exit
+}
+# Doesn't expect any other parameters.
+if ( $args.Length != 1)
+{
+	write-output "No more than one parameter."
+	exit
+}
+
+$treeRef = git subtree --prefix $args[0] master
+git push origin $treeRef:gh-pages --force
+
+

@@ -14,6 +14,13 @@ GENERATED_FILES:=$(addprefix $(WEB_OUTPUT_DIR), $(WEB_FILES))
 GENERATED_HTML_FILES:=$(filter %.html, $(GENERATED_FILES))
 TEMPLATES:=$(wildcard $(TEMPLATE_DIR)*.mustache)
 
+# How do we publish?
+ifeq ($(OS), Windows_NT)
+	PUBLISH_SCRIPT:=TODO
+else
+	PUBLISH_SCRIPT:=./publish.sh
+endif
+
 # Disable all default rules
 .SUFFIXES:
 MAKEFLAGS+=--no-builtin-rules
@@ -26,6 +33,9 @@ run: all
 
 clean:
 	rm -rf generated
+
+publish: all
+	$(PUBLISH_SCRIPT) "$(WEB_OUTPUT_DIR)"
 
 $(GENERATED_HTML_FILES) &: $(TEMPLATES) $(GENERATOR) resources/projects.toml
 	@mkdir -p $(WEB_OUTPUT_DIR)
@@ -44,4 +54,5 @@ $(WEB_OUTPUT_DIR)%.css: src/sass/%.scss
 $(WEB_OUTPUT_DIR)%.js: src/client/%.js
 	cp $^ $@
 
-#.PHONY: all, run, clean
+
+.PHONY: all, run, clean, publish
