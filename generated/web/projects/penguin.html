@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/mystyles.css">
+	<link rel="stylesheet" href="/splide.min.css">
+	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
+	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script src="/splide.js"></script>
+	<title>Penguin | Portfolio | Matthew Rogge</title>
+</head>
+<body>
+	<nav class="navbar is-fixed-top">
+		<div class="navbar-brand">
+			<a role="button" class="navbar-burger">
+				<!-- Three empty spans to draw the burger icon -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+		<div class="navbar-menu">
+			<div class="navbar-end">
+				<a class="navbar-item is-tab " href="/#about">About Me</a>
+				<a class="navbar-item is-tab is-active" href="/#projects">Projects</a>
+				<a class="navbar-item is-tab " href="contact.html">Contact</a>
+				<a class="navbar-item" href="resume.pdf">Resume&nbsp;<i class="fas fa-external-link-alt"></i></a></div>
+		</div>
+	</nav>
+	<div class="section">
+		<div class="card">
+			<div class="card-content">
+				<div class="media">
+					<div class="media-left has-image">
+						<img src="/placeholder.png" width="1280" height="960">
+					</div>
+					<div class="media-content">
+						<h1 class="title">Penguin</h1>
+						<h2 class="subtitle">A java game about a sliding penguin</h2>
+						<div class="content"><div class="markdown"><p><strong>Penguin</strong> was a small tile-based puzzle game I first made in my senior year of
+high school to help with college admissions. It was based on the sliding ice puzzles
+of Pokemon's ice caves. The player controlled a penguin that could walk over ground, 
+and could slide over ice until it hit an object. The goal was to reach a door at the
+end of the level. Solutions involved paths that crossed over themselves multiple
+times.</p>
+<p>The project was done using Processing, a thin wrapper language around Java. It
+took approximately 20 hours to program and create assets. Unfortunately, the original 
+copy has been lost over the years.</p></div></div>
+					</div>
+					<!-- TODO: A nice-looking vertical dividor -->
+					<div class="media-right">			
+						<h3>Language:</h3><span><a>Java</a><!-- TODO: Outgoing-link symbol --></span>
+						<h3>Years:</h3><span>2012, 2020</span><!-- TODO: Make a config option for this -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="card">
+			<div class="splide">
+				<div class="splide__track">
+					<ul class="splide__list">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		new Splide('.splide').mount();
+	</script>
+</body>

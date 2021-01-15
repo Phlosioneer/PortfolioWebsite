@@ -34,7 +34,7 @@ run: all
 clean:
 	rm -rf generated
 
-publish: all
+publish: all $(WEB_OUTPUT_DIR)CNAME
 	$(PUBLISH_SCRIPT) "$(WEB_OUTPUT_DIR)"
 
 $(GENERATED_HTML_FILES) &: $(TEMPLATES) $(GENERATOR) resources/projects.toml
@@ -52,6 +52,9 @@ $(WEB_OUTPUT_DIR)%.css: src/sass/%.scss
 	@diff $(TEMP_DIR)$*.css $@ || echo ""
 
 $(WEB_OUTPUT_DIR)%.js: src/client/%.js
+	cp $^ $@
+
+$(WEB_OUTPUT_DIR)CNAME: CNAME
 	cp $^ $@
 
 
