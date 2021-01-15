@@ -33,14 +33,17 @@
 					<div class="media-content">
 						<h1 class="title">Patch for Redstone Arsenal</h1>
 						<h2 class="subtitle">Script to parse and modify java bytecode</h2>
-						<div class="content"><p>Redstone Arsenal is a minecraft mod. I didn't have the 
+						<div class="content"><div class="markdown"><p>Redstone Arsenal is a minecraft mod. I didn't have the 
 minecraft development environment set up, so I wrote a script 
-to edit the mod. The script took some transformations, and 
-searched several class files for matches. It then applied the 
-transforms and adjusted the constants table and integer sizes 
-accordingly. It also substituted functions with hand-written 
-jvm bytecode.</p>
-</div>
+to edit the mod's compiled .java files. The script changes
+several constants over 8 files to rebalance the mod. It scans
+for code that assigns the constants and transforms them to use
+new constants. The integers involved are near the maximum signed
+value of a Short, and increasing their size was very difficult.</p>
+<p>First, the script parses the requested changes in an abbreviated
+format. Patches are described by the name of the variable, its value,
+and which file(s) have that variable. Then it reads the JVM bytecode,
+which is separated into a constants table and the code body for each</p></div></div>
 					</div>
 					<!-- TODO: A nice-looking vertical dividor -->
 					<div class="media-right">			

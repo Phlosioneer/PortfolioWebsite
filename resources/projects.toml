@@ -1,16 +1,17 @@
 
 featured = [
 	"penguin",
-	"zork",
+	"tiled_map_loader",
 	"lights_out",
-	"connect_four"
+	"blue_lagoon",
 ]
 
 not_featured = [
 	"portfolio",
-	"tiled_map_loader",
-	"blue_lagoon",
+	"zork",
+	"covid_questionnaire",
 	"jmaker",
+	"connect_four",
 	"pentago",
 	"download_hawk",
 	"color_picker",
@@ -20,7 +21,6 @@ not_featured = [
 	"lua-rs",
 	"pipelined_mips",
 	"molek_solitaire",
-	"masyu_solver",
 	"sudoku_interactive",
 	"calculator",
 	"caracassone"
@@ -29,10 +29,9 @@ not_featured = [
 [projects.penguin]
 name = "Penguin"
 language = "Java"
-dates = [2012, 2020]
+dates = [2012]
 brief = "A java game about a sliding penguin"
 image = "placeholder.png"
-github = ""
 desc = """
 **Penguin** was a small tile-based puzzle game I first made in my senior year of
 high school to help with college admissions. It was based on the sliding ice puzzles
@@ -43,23 +42,22 @@ times.
 
 The project was done using Processing, a thin wrapper language around Java. It
 took approximately 20 hours to program and create assets. Unfortunately, the original 
-copy has been lost over the years. Since then I've made another version very similar
-to the original, also in Processing.
+copy has been lost over the years.
 """
 
-[[projects.penguin.screenshots]]
-image = "dummyScreenshot1.png"
-desc = "Test screenshot 1."
-
-[[projects.penguin.screenshots]]
-image = "dummyScreenshot2.png"
-desc = "Test screenshot 2."
+[projects.covid_questionnaire]
+name = "Covid Questionnaire"
+language = "Javascript"
+dates = [2020]
+brief = "A Covid survey for an Orthodontist"
+gitlab = "https://gitlab.com/Phlosioneer/covid-questions"
 
 [projects.zork]
 name = "Zork"
 language = [ "C", "Rust" ]
 brief = "Project to translate zork into Rust"
 image = "placeholder.png"
+repo = "https://gitlab.com/Phlosioneer/zork-rs"
 desc = """
 **Zork** is a classic text-based adventure game, and this project
 partially re-implemented it in Rust. The original C source for the game is
@@ -79,8 +77,10 @@ tests were done by manually playing the game. That didn't even work very well&se
 sometimes replacing a function would cause bugs to appear in code I hadn't even
 looked at yet. To address these issues, I created an integration testing program
 that recorded manual inputs and the original program's output text. It then ran
-the C and Rust hybrid binary and checked the output against its recordings. With
-proper integration testing set up, I made good progress.
+the C and Rust hybrid binary and checked the output against its recordings. The
+recordings were large, so I stored them in a [separate repository]
+(https://gitlab.com/Phlosioneer/zork-playback). With proper integration testing
+set up, I made good progress.
 
 I stopped the project when I reached the command processing code. It was too
 tangled in unwritten assumptions, indirection, and hacky algorithms for me to
@@ -91,7 +91,7 @@ rewrite.
 name = "Lights Out"
 language = "Javascript"
 brief = "Classic puzzle game as a web page"
-image = "placeholder.png"
+repo = "https://github.com/Phlosioneer/react-lights-out/"
 desc = """
 **Lights Out** is a game that I created to practice making web pages using React.
 It's a simple implementation of the classic handheld game Lights Out. The goal of
@@ -107,7 +107,6 @@ for managing state. It was just complicated enough to be non-trivial to implemen
 name = "Connect Four"
 language = "Several" # Languages will be listed in description
 brief = "Same game, in several languages"
-image = "placeholder.png"
 desc = """
 **Connect Four** was a multi-language project. I implemented the game
 Connect Four using standard text I/O in several languages. Similar to the
@@ -117,21 +116,22 @@ each codebase was.
 """
 
 [[projects.connect_four.screenshots]]
-image = "placeholder.png"
+image = "ConnectFourC.png"
 desc = """
 This is from the C implementation of Connect Four, for Windows. It uses the
 windows console API to switch the command prompt from OEM to utf-8, checks that
 the user's console font supports utf-8, and then uses the Box Drawing characters
 to draw the grid.
 
-<a class="github" href="..."></a>
+[Github Repo](https://github.com/Phlosioneer/ConnectFourC)
 """
-# TODO: Figure out how to style the github link differently.
+# F09B is the Font Awesome code for github.
 
 [projects.portfolio]
 name = "Portfolio Website"
 language = "Javascript"
 brief = "This website!"
+repo = "https://github.com/Phlosioneer/PortfolioWebsite"
 desc = """
 **My Portfolio** is this website that you're viewing right now. I
 created it from scratch in November and December of 2020, during the COVID-19
@@ -151,10 +151,17 @@ it very lightweight. I also decided to avoid JQuery, preferring built-in operati
 instead; and there are no polyfills, to keep the javascript minimal.
 """
 
+[[projects.portfolio.screenshots]]
+image = "PortfolioEarlyDev.png"
+desc = """
+An early mockup of the portfolio website.
+"""
+
 [projects.blue_lagoon]
 name = "Blue Lagoon"
 language = "Processing"
 brief = "Digital implementation of the board game"
+repo = "https://github.com/Phlosioneer/BlueLagoon"
 desc = """
 **Blue Lagoon** was an attempt to build a digital version of the Blue Lagoon
 board game. During this project I experimented with using Tiled's map file format
@@ -173,18 +180,23 @@ As part of this project, I used my [TiledMapLoader](tiled_map_loader) library.
 [[projects.blue_lagoon.screenshots]]
 image = "placeholder.png"
 desc = """
-The main view. All of the various indicators on the top and left of the screen
-work, but have nothing to display. 
+This is what the board looks like in-game. All of the various indicators on the top
+and left of the screen work, but have nothing to display. The board is made of hex
+tiles that highlight when the mouse is over them.
 """
 
 [[projects.blue_lagoon.screnshots]]
 image = "placeholder.png"
-desc = ""
+desc = """
+These are some of the overlays. Each scoring category has a tooltip-like window to
+explain the game mechanics of the scoring.
+"""
 
 [projects.jmaker]
 name = "JMaker"
 language = "Java"
 brief = "Build system hybrid between Make and Gradle"
+repo = "https://github.com/Phlosioneer/JMaker"
 desc = """
 **JMaker** was born from frustration with using Gradle for managing java
 projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
@@ -228,7 +240,19 @@ brief = "Program to delete unused downloaded files"
 [projects.color_picker]
 name = "Pixel Art Color Picker"
 language = "Processing"
+repo = "https://github.com/Phlosioneer/ColorPicker"
 brief = "Helper program for the math of pixel art coloring"
+desc = """
+This is a tool I made to help make palettes for pixel art. It uses
+the formulas provided by a prominent pixel art tutorial series,
+[PixelBlog](https://www.slynyrd.com/blog/2018/1/10/pixelblog-1-color-palettes).
+All the parameters are configurable, including editable quadratic
+bezier curves. It allows saving and loading palette configuration as
+a JSON file, and can export them to .pal files that most image editing software can
+understand.
+
+The tool was made using Processing, without using external GUI libraries.
+"""
 
 [projects.gw2_tradingpost]
 name = "Guild Wars 2 Trading Post Analyzer"
@@ -247,11 +271,17 @@ brief = "Script to parse and modify java bytecode"
 desc = """
 Redstone Arsenal is a minecraft mod. I didn't have the 
 minecraft development environment set up, so I wrote a script 
-to edit the mod. The script took some transformations, and 
-searched several class files for matches. It then applied the 
-transforms and adjusted the constants table and integer sizes 
-accordingly. It also substituted functions with hand-written 
-jvm bytecode.
+to edit the mod's compiled .java files. The script changes
+several constants over 8 files to rebalance the mod. It scans
+for code that assigns the constants and transforms them to use
+new constants. The integers involved are near the maximum signed
+value of a Short, and increasing their size was very difficult.
+
+First, the script parses the requested changes in an abbreviated
+format. Patches are described by the name of the variable, its value,
+and which file(s) have that variable. Then it reads the JVM bytecode,
+which is separated into a constants table and the code body for each
+
 """
 
 [projects.knights_dialer]
@@ -262,42 +292,103 @@ brief = "Solves the Kight's Dialar puzzle"
 [projects.lua-rs]
 name = "Lua Interpreter"
 language = "Rust"
+repo = "https://gitlab.com/Phlosioneer/lua-rs"
 brief = "A lua script interpreter in pure rust"
+desc = """
+**Lua-rs** was a lua runtime implemented in rust. The library is able
+to parse lua code into an abstract syntax tree, and TODO: does it work?
+"""
 
 [projects.pipelined_mips]
 name = "Pipelined Mips CPU"
 language = "Verilog"
 brief = "A fully functional 32bit MIPS CPU core"
+repo = "https://github.com/Phlosioneer/pipelined-mips"
+desc = """
+**Pipelined Mips** is a fully pipelined 32-bit MIPS CPU made as a
+final project of a systems engineering class. The CPU is described
+by verilog code using a reduced subset of verilog, making the project
+harder. A team of three students and I designed and implemented the
+CPU over two months. It is able to run simple MIPS assembly programs.
+
+The project was a success and was submitted in October of 2017. I
+continued working on it for another month after submission, to clean
+up the project and fix known bugs. I also added support for more
+opcodes, and added more tests. We simulated the CPU using <TODO>.
+"""
 
 [projects.molek_solitaire]
 name = "Solver for Molek Solitaire"
 language = "Rust"
 brief = "Solver for a very hard solitaire game from Zachtronics"
+repo = "todo"
+image = "placeholder.png" #TODO: in-game solitaire cards showing normal and glitched cards.
+desc = """
+Zachtronics is a game studio known for making games about programming.
+However, another thing they're known for is solitaire. Each of their
+programming games contains a custom-made solitaire minigame thematically
+similar to the programming game. The solitaire minigames range from
+moderately difficult to nearly impossible, and they don't avoid generating
+unsolvable games. While playing the solitaire for one of their games
+(Molek Syntez), I had a feeling that there was an algorithm to solve it.
+This project is my attempt to implement that algorightm.
 
-[projects.masyu_solver]
-name = "Solver for Masyu"
-language = "?" # TODO: What language is this?
-brief = "Rule-based solver for Masyu puzzles"
+TODO: How far did I get?
+
+TODO: Document the math/diagrams/algorithm in the repo. I think I still
+have my drawings for it.
+
+TODO: Use screenshots below to feature those drawings and the algorithm.
+"""
 
 [projects.sudoku_interactive]
 name = "Interactive Sudoku"
-language = "Java"
-brief = "A sudoku player that teaches the player advanced techniques"
+language = "Javascript"
+brief = "A sudoku game that teaches the player advanced techniques"
+repo = "TODO"
+desc = """
+**Interactive Sudoku** is an app that helps players improve their sudoku
+skills. While there are many sudoku apps out there, and many solvers as well,
+this app is different. The app notices the techniques that the player is
+using to solve puzzles, and how often the player is able to notice those
+moves, and saves those as a profile of the player. The app then uses that
+profile to provide targeted hints, and to generate puzzles that teach the
+player new skills.
+
+This project is a work in progress, and there are technical challenges
+that I haven't resolved yet. I have basic sudoku entering and playing
+functionality, and I have a list of techniques to implement as part of the
+skill recognition system. The rest has not been implemented yet.
+"""
 
 [projects.calculator]
 name = "Terminal Calculator"
 language = "Rust"
 brief = "A simple infix calculator"
+desc = """
+This project was a simple calculator for learning and practicing input
+parsing.
+"""
 
 [projects.caracassone]
 name = "Caracassone"
 language = "Java"
 brief = "Digital form of the board game"
+repo = "https://gitlab.com/Phlosioneer/Carcassonne"
+desc = """
+**Caracassone** was a digital implemention of the classic boardgame
+Caracassone. The game uses tiles to slowly build up a board, and scores
+points based on the geometry of that board. It was a very interesting
+challenge to calculate the connections and shapes of the boards, and
+properly draw outlines of those shapes. I was able to successfully overcome
+that challenge, but lost interest in the project afterwards.
+"""
 
 [projects.tiled_map_loader]
 name = "TiledMapLoader Library"
 language = "Java"
 brief = "Java library to read TMX and TSX files"
+repo = "https://github.com/Phlosioneer/TiledMapLoader"
 desc = """
 **TiledMapLoader** is a library for parsing [Tiled's TMX/TSX file format]
 (https://www.mapeditor.org/). It is used my several of my other game projects,

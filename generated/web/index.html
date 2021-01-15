@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="/mystyles.css">
 	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
 	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script defer src="/scrollPositionWatcher.js"></script>
 	<title>Portfolio | Matthew Rogge</title>
 </head>
 <body>
@@ -24,16 +25,36 @@
 				<a class="navbar-item" href="resume.pdf">Resume&nbsp;<i class="fas fa-external-link-alt"></i></a></div>
 		</div>
 	</nav>
-	<section class="section" id="about">
-		<!-- About Me -->
+	<section class="section">
+		<div class="section-link" id="about"></div>
+		<div class="card">
+			<div class="card-content">
+				<h1 class="title">About Me</h1>
+				<p>My name is Matthew Rogge and I'm a Software Engineer.</p>
+
+				<p>I have a passion for learning programming languages and acquiring new skills. My education and experience put me in the unique position of being qualified to work on many kinds of software, from full stack development to bare metal assembly.</p>
+
+				<h2 class="subtitle">What does Software Development mean to me?</h2>
+
+				<p>I take software development very seriously. It is not just about the code. There is a complex process of design, implementation, and revision, with communication and teamwork woven into each step of the process.</p>
+
+				<h2 class="subtitle">What sets apart a Software <em>Engineer</em> from a Developer?</h2>
+
+				<p>Software engineers must consider the consequences of their design decisions. Safety critical code must be correct and well-tested the first time it's used. However, even seemingly unimportant decisions can have serious consequences. Engineers building recommendation algorithms must consider the social impact and biases of the algorithm. Security should be designed into programs from the start. Often, the privacy and security implications of a feature or algorithm are neglected. An example of this:  a service that indicates when a user is on vacation can be used by burglars to locate unoccupied houses.</p>
+
+				<p>TODO: Clean up!</p>
+
+			</div>
+		</div>
 	</section>
-	<section class="section" id="projects">
+	<section class="section">
+		<div class="section-link" id="projects"></div>
 		<div class="columns">
 				<div class="column">
 					<a class="like-div card featured-project" href="/projects/penguin.html">
 						<div class="card-image">
 							<figure class="image is-4by3">
-								<img src="" width="" height="">
+								<img src="/placeholder.png" width="1280" height="960">
 							</figure>
 						</div>
 						<div class="card-content">
@@ -43,15 +64,14 @@
 					</a>
 				</div>
 				<div class="column">
-					<a class="like-div card featured-project" href="/projects/zork.html">
+					<a class="like-div card featured-project" href="/projects/tiled_map_loader.html">
 						<div class="card-image">
 							<figure class="image is-4by3">
-								<img src="" width="" height="">
 							</figure>
 						</div>
 						<div class="card-content">
-							<p class="title is-4">Zork</p>
-							<div class="content">Project to translate zork into Rust</div>
+							<p class="title is-4">TiledMapLoader Library</p>
+							<div class="content">Java library to read TMX and TSX files</div>
 						</div>
 					</a>
 				</div>
@@ -59,7 +79,6 @@
 					<a class="like-div card featured-project" href="/projects/lights_out.html">
 						<div class="card-image">
 							<figure class="image is-4by3">
-								<img src="" width="" height="">
 							</figure>
 						</div>
 						<div class="card-content">
@@ -69,15 +88,14 @@
 					</a>
 				</div>
 				<div class="column">
-					<a class="like-div card featured-project" href="/projects/connect_four.html">
+					<a class="like-div card featured-project" href="/projects/blue_lagoon.html">
 						<div class="card-image">
 							<figure class="image is-4by3">
-								<img src="" width="" height="">
 							</figure>
 						</div>
 						<div class="card-content">
-							<p class="title is-4">Connect Four</p>
-							<div class="content">Same game, in several languages</div>
+							<p class="title is-4">Blue Lagoon</p>
+							<div class="content">Digital implementation of the board game</div>
 						</div>
 					</a>
 				</div>
@@ -98,8 +116,16 @@
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
-									<p class="title is-4">Blue Lagoon</p>
-										<p>Digital form of the board game</p>
+									<p class="title is-4">Zork</p>
+										<p>Project to translate zork into Rust</p>
+									</div>
+								</article>
+							</a>
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Covid Questionnaire</p>
+										<p>A Covid survey for an Orthodontist</p>
 									</div>
 								</article>
 							</a>
@@ -111,6 +137,16 @@
 									</div>
 								</article>
 							</a>
+					</div>
+					<div class="tile is-ancestor">
+							<a class="like-div tile is-vertical is-parent normal-project">
+								<article class="tile is-child media">
+									<div class="media-content">
+									<p class="title is-4">Connect Four</p>
+										<p>Same game, in several languages</p>
+									</div>
+								</article>
+							</a>
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
@@ -119,8 +155,6 @@
 									</div>
 								</article>
 							</a>
-					</div>
-					<div class="tile is-ancestor">
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
@@ -137,6 +171,8 @@
 									</div>
 								</article>
 							</a>
+					</div>
+					<div class="tile is-ancestor">
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
@@ -153,8 +189,6 @@
 									</div>
 								</article>
 							</a>
-					</div>
-					<div class="tile is-ancestor">
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
@@ -171,6 +205,8 @@
 									</div>
 								</article>
 							</a>
+					</div>
+					<div class="tile is-ancestor">
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
@@ -187,21 +223,11 @@
 									</div>
 								</article>
 							</a>
-					</div>
-					<div class="tile is-ancestor">
-							<a class="like-div tile is-vertical is-parent normal-project">
-								<article class="tile is-child media">
-									<div class="media-content">
-									<p class="title is-4">Solver for Masyu</p>
-										<p>Rule-based solver for Masyu puzzles</p>
-									</div>
-								</article>
-							</a>
 							<a class="like-div tile is-vertical is-parent normal-project">
 								<article class="tile is-child media">
 									<div class="media-content">
 									<p class="title is-4">Interactive Sudoku</p>
-										<p>A sudoku player that teaches the player advanced techniques</p>
+										<p>A sudoku game that teaches the player advanced techniques</p>
 									</div>
 								</article>
 							</a>
@@ -210,14 +236,6 @@
 									<div class="media-content">
 									<p class="title is-4">Terminal Calculator</p>
 										<p>A simple infix calculator</p>
-									</div>
-								</article>
-							</a>
-							<a class="like-div tile is-vertical is-parent normal-project">
-								<article class="tile is-child media">
-									<div class="media-content">
-									<p class="title is-4">Caracassone</p>
-										<p>Digital form of the board game</p>
 									</div>
 								</article>
 							</a>

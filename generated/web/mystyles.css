@@ -10164,4 +10164,8 @@ a.like-div:hover {
   margin-top: 3.25rem;
 }
 
+.section-link {
+  transform: translateY(-4.75rem);
+}
+
 /*# sourceMappingURL=mystyles.css.map */
