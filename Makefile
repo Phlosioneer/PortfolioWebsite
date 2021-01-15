@@ -8,9 +8,13 @@ TEMPLATE_DIR:=resources/templates/
 GENERATOR:=src/server/generator.js
 HOST:=src/server/host.js
 TEMP_DIR:=generated/tmp/
+IMAGES_DIR:=resources/images
 
 # Computed variables
-GENERATED_FILES:=$(addprefix $(WEB_OUTPUT_DIR), $(WEB_FILES))
+SRC_IMAGES:=$(wildcard $(IMAGES_DIR)/*)
+$(info $(SRC_IMAGES))
+DEST_IMAGES:=$(subst $(IMAGES_DIR), $(WEB_OUTPUT_DIR), $(SRC_IMAGES))
+GENERATED_FILES:=$(addprefix $(WEB_OUTPUT_DIR), $(WEB_FILES)) $(DEST_IMAGES)
 GENERATED_HTML_FILES:=$(filter %.html, $(GENERATED_FILES))
 TEMPLATES:=$(wildcard $(TEMPLATE_DIR)*.mustache)
 
@@ -57,5 +61,7 @@ $(WEB_OUTPUT_DIR)%.js: src/client/%.js
 $(WEB_OUTPUT_DIR)CNAME: CNAME
 	cp $^ $@
 
+#$(DEST_IMAGES)&: $(SRC_IMAGES)
+#	cp $^ $@
 
 .PHONY: all, run, clean, publish
