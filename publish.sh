@@ -13,4 +13,4 @@ then
 	exit -2
 fi
 
-git push origin `git subtree split --prefix "$1" master`:gh-pages --force
+git push origin `git subtree split --prefix "$1" master`:refs/heads/gh-pages --force
