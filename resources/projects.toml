@@ -23,7 +23,7 @@ not_featured = [
 	"molek_solitaire",
 	"sudoku_interactive",
 	"calculator",
-	"caracassone"
+	"carcassonne"
 ]
 
 [projects.penguin]
@@ -64,7 +64,7 @@ partially re-implemented it in Rust. The original C source for the game is
 available on the internet, but it's poorly commented with minimal variable
 names. The first goal of the project was to learn more about the C Foreign Function
 Interface (FFI) by implementing some functions in Rust and then linking the
-binaries together. The second goal of the project was to practice reverse-
+binaries together. The second goal of the project was to practice reverse
 engineering algorithms and legacy code.
 
 I made an effort to not just blindly translate the C into Rust for each
@@ -73,7 +73,7 @@ the game, and refactored the code as I translated it.
 
 An issue that appeared early on was the difficulty of testing changes. I
 was able to make unit tests for individual Rust functions, but integration
-tests were done by manually playing the game. That didn't even work very well&semi;
+tests were done by manually playing the game. That didn't even work very well;
 sometimes replacing a function would cause bugs to appear in code I hadn't even
 looked at yet. To address these issues, I created an integration testing program
 that recorded manual inputs and the original program's output text. It then ran
@@ -119,8 +119,8 @@ each codebase was.
 image = "ConnectFourC.png"
 desc = """
 This is from the C implementation of Connect Four, for Windows. It uses the
-windows console API to switch the command prompt from OEM to utf-8, checks that
-the user's console font supports utf-8, and then uses the Box Drawing characters
+windows console API to switch the command prompt from OEM to Utf-8, checks that
+the user's console font supports Utf-8, and then uses the Box Drawing characters
 to draw the grid.
 
 [Github Repo](https://github.com/Phlosioneer/ConnectFourC)
@@ -136,19 +136,19 @@ desc = """
 **My Portfolio** is this website that you're viewing right now. I
 created it from scratch in November and December of 2020, during the COVID-19
 pandemic. This website uses configuration files to describe each of my programming
-projects, and a node script to generate the static website from those config files.
+projects, and a Node script to generate the static website from those config files.
 I use the templating language Mustache for splitting HTML into composable pieces,
 and I use ExpressJS for localhost development.
 
 A makefile manages the generator script and SCSS to CSS conversion. I decided
-to use Make for build management instead of webpack, gulp, or others because of
+to use Make for build management instead of Yeoman, Gulp, or others because of
 familiarity and simplicity.
 
 One early goal for the project was to minimize the dependencies, and provide an
 extremely light-weight site. I decided to avoid React and other similar frameworks,
-and use Bulma and plain HTML for visual effects. Bulma is a pure-css library, making
+and use Bulma and plain HTML for visual effects. Bulma is a pure css library, making
 it very lightweight. I also decided to avoid JQuery, preferring built-in operations
-instead; and there are no polyfills, to keep the javascript minimal.
+instead; and there are no polyfills, to keep the Javascript minimal.
 """
 
 [[projects.portfolio.screenshots]]
@@ -198,33 +198,42 @@ language = "Java"
 brief = "Build system hybrid between Make and Gradle"
 repo = "https://github.com/Phlosioneer/JMaker"
 desc = """
-**JMaker** was born from frustration with using Gradle for managing java
+**JMaker** was born from frustration with using Gradle for managing Java
 projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
 build files should only need to describe deviations from the default project
-structure. This philosophy works excellently for pure-java projects, but runs into
+structure. This philosophy works excellently for pure Java projects, but runs into
 problems if the project mixes in other languages or dynamically generated resources.
 It also has a hard time running arbitrary code as part of its build files. Although
-it uses a programming language to define them, it exposes an extremely small, minimal
-API, that's often undocumented. Finally, it can have difficulties building an accurate
-dependency graph for unusual project setups.
+it uses a programming language to define them, it only exposes an extremely small,
+minimal API. Each plugin has an API, but the details are often undocumented. Finally,
+it can have difficulties building an accurate dependency graph for unusual project
+setups.
 
 GNU Make has the opposite philosophy; it offers some defaults, but assumes very
-little about how it's being used. However, makefiles are described using a very old
-DSL with strange corner cases and limitations. Notably, it has extreme difficulties
-handling commands, variable values, and file paths that include colons. The java
-command-line compiler (javac) makes use of colons in many of its commands, so Make
-has a hard time with java.
+little about how it's being used. Make excels at managing complex build processes
+by using very robust bash integration and a well-defined dependency graph. However,
+makefiles are described using a very old language with strange corner cases and limitations.
+Notably, it has extreme difficulties handling commands, variable values, and bash commands
+that include colons. The Java command-line compiler (javac) makes use of colons in
+many of its commands, so Make has a hard time with Java.
 
 JMaker was an effort to make a tool that could leverage the strengths of each,
-with fewer downsides. It would have used Lua to define its configuration and commands,
-but use a rule-based production system like Make. That would allow it to have a clear
-and well-defined dependency graph, with all the power of using an actual programming
+with fewer downsides. It used Lua to define its configuration and commands, and uses
+a rule-based production system like Make. That would allow it to have a clear and
+well-defined dependency graph, with all the power of using an actual programming
 language for build files.
 
-I built JMaker as part of my [Blue Lagoon](blue_lagoon) project. Gradle wasn't
-able to understand some asset-generating scripts for tileset management. I got very
-far with the project, but abandoned it at the same time that I stopped working on
-Blue Lagoon.
+I finished a fully functioning Lua parser and interpreter with custom syntax for recipe
+definition. But work on the project stalled when writing the code to handle external
+scripts. I learned how difficult it is to correctly start processes, capture their input
+and output, manage environment variables, and handle crashed or unresponsive commands.
+Make has built up a very robust system for calling executables and running bash scripts
+that is extremely difficult to port to Java. It handles many corner-cases and works around
+issues that I didn't even know existed until I tried to implement a similar system.
+
+I started JMaker as part of my [Blue Lagoon](blue_lagoon) project. Gradle wasn't
+able to understand some asset-generating scripts for tileset management. Unfortunately,
+I wasn't able to get it working well enough to replace Gradle on that project.
 """
 
 [projects.pentago]
@@ -269,10 +278,10 @@ name = "Patch for Redstone Arsenal"
 language = "Jupyter Notebook"
 brief = "Script to parse and modify java bytecode"
 desc = """
-Redstone Arsenal is a minecraft mod. I didn't have the 
-minecraft development environment set up, so I wrote a script 
-to edit the mod's compiled .java files. The script changes
-several constants over 8 files to rebalance the mod. It scans
+Redstone Arsenal is a Minecraft mod. I didn't have the 
+Minecraft development environment set up, so I wrote a script 
+to edit the mod's compiled Java files. The script changes
+several constants over 8 files to re-balance the mod. It scans
 for code that assigns the constants and transforms them to use
 new constants. The integers involved are near the maximum signed
 value of a Short, and increasing their size was very difficult.
@@ -281,7 +290,20 @@ First, the script parses the requested changes in an abbreviated
 format. Patches are described by the name of the variable, its value,
 and which file(s) have that variable. Then it reads the JVM bytecode,
 which is separated into a constants table and the code body for each
+function. The constants table also contains type information like the
+names for each of the fields.
 
+Next it iterates through each patch, and starts transforming it. Constants
+that fit within 2 bytes before and after the patch were easy to implement,
+and just required changing an inlined constant. Constants that were
+originally 4 bytes were also easy; their entry in the constants table
+was overwritten with the new value.
+
+Constants that were 2 bytes before the patch but were 4 bytes after
+the patch required more attention. Constant numbers larger than 2
+bytes required a new entry in the constants table and a different opcode.
+
+The script worked perfectly, and continued to work when the mod updated.
 """
 
 [projects.knights_dialer]
@@ -295,30 +317,50 @@ language = "Rust"
 repo = "https://gitlab.com/Phlosioneer/lua-rs"
 brief = "A lua script interpreter in pure rust"
 desc = """
-**Lua-rs** was a lua runtime implemented in rust. The library is able
-to parse lua code into an abstract syntax tree, and TODO: does it work?
+**Lua-rs** was a Lua interpreter implemented in rust. The library is able
+to parse Lua code into an abstract syntax tree. I started on this project
+because there were no pure Rust crates able to run Lua. The only option was
+to use a wrapper around the Lua C API, which was not very safe.
+
+Going into this project, I had a lot of experience with Lua: my
+[JMaker](jmaker) project involved writing an interpreter for an extended
+version of Lua. However, I eventually lost the motivation to continue with
+the project. It used a recursive-descent parser, which I was unable to make
+safe in Rust. It also used a recursive expression evaluator, which was unsafe
+due to possible stack overflows. At the time I didn't know there were
+alternatives to recursive descent, and also got bogged down in the details of
+memory management in the AST-walking code.
+
+With my current knowledge of parsers and a better understanding of managing
+complex algorithms, I think I would be able to complete this project. However
+there are now multiple Rust crates available to parse and execute Lua safely.
 """
+#TODO: Was lua-rs before or after JMaker?
+#TODO: How complete is lua-rs? Does it work?
 
 [projects.pipelined_mips]
-name = "Pipelined Mips CPU"
+name = "Pipelined MIPS CPU"
 language = "Verilog"
 brief = "A fully functional 32bit MIPS CPU core"
 repo = "https://github.com/Phlosioneer/pipelined-mips"
 desc = """
-**Pipelined Mips** is a fully pipelined 32-bit MIPS CPU made as a
-final project of a systems engineering class. The CPU is described
-by verilog code using a reduced subset of verilog, making the project
-harder. A team of three students and I designed and implemented the
-CPU over two months. It is able to run simple MIPS assembly programs.
+**Pipelined MIPS** is a fully pipelined 32-bit [MIPS]
+(https://en.wikipedia.org/wiki/MIPS_architecture) CPU made as a
+final project of a systems engineering class at Bucknell. The CPU is described
+by Verilog code using a reduced subset of Verilog, to enforce a logic-gate
+level understanding of the CPU. A team of three students and I designed and
+implemented the CPU over two months. It is able to run simple MIPS assembly
+programs. 
 
 The project was a success and was submitted in October of 2017. I
 continued working on it for another month after submission, to clean
 up the project and fix known bugs. I also added support for more
-opcodes, and added more tests. We simulated the CPU using <TODO>.
+opcodes, and added more tests.
 """
+#TODO: What software did we use to simulate it?
 
 [projects.molek_solitaire]
-name = "Solver for Molek Solitaire"
+name = "Solver for Molek-Syntez Solitaire"
 language = "Rust"
 brief = "Solver for a very hard solitaire game from Zachtronics"
 repo = "todo"
@@ -331,15 +373,14 @@ similar to the programming game. The solitaire minigames range from
 moderately difficult to nearly impossible, and they don't avoid generating
 unsolvable games. While playing the solitaire for one of their games
 (Molek Syntez), I had a feeling that there was an algorithm to solve it.
-This project is my attempt to implement that algorightm.
-
-TODO: How far did I get?
-
-TODO: Document the math/diagrams/algorithm in the repo. I think I still
-have my drawings for it.
-
-TODO: Use screenshots below to feature those drawings and the algorithm.
+This project is my attempt to implement that algorithm.
 """
+#TODO: How far did I get?
+
+#TODO: Document the math/diagrams/algorithm in the repo. I think I still
+#have my drawings for it.
+
+#TODO: Use screenshots below to feature those drawings and the algorithm.
 
 [projects.sudoku_interactive]
 name = "Interactive Sudoku"
@@ -347,8 +388,8 @@ language = "Javascript"
 brief = "A sudoku game that teaches the player advanced techniques"
 repo = "TODO"
 desc = """
-**Interactive Sudoku** is an app that helps players improve their sudoku
-skills. While there are many sudoku apps out there, and many solvers as well,
+**Interactive Sudoku** is an app that helps players improve their Sudoku
+skills. While there are many Sudoku apps out there, and many solvers as well,
 this app is different. The app notices the techniques that the player is
 using to solve puzzles, and how often the player is able to notice those
 moves, and saves those as a profile of the player. The app then uses that
@@ -356,7 +397,7 @@ profile to provide targeted hints, and to generate puzzles that teach the
 player new skills.
 
 This project is a work in progress, and there are technical challenges
-that I haven't resolved yet. I have basic sudoku entering and playing
+that I haven't resolved yet. I have basic Sudoku entering and playing
 functionality, and I have a list of techniques to implement as part of the
 skill recognition system. The rest has not been implemented yet.
 """
@@ -370,14 +411,14 @@ This project was a simple calculator for learning and practicing input
 parsing.
 """
 
-[projects.caracassone]
-name = "Caracassone"
+[projects.carcassonne]
+name = "Carcassonne"
 language = "Java"
 brief = "Digital form of the board game"
 repo = "https://gitlab.com/Phlosioneer/Carcassonne"
 desc = """
-**Caracassone** was a digital implemention of the classic boardgame
-Caracassone. The game uses tiles to slowly build up a board, and scores
+**Carcassonne** was a digital implementation of the classic boardgame
+Carcassonne. The game uses tiles to slowly build up a board, and scores
 points based on the geometry of that board. It was a very interesting
 challenge to calculate the connections and shapes of the boards, and
 properly draw outlines of those shapes. I was able to successfully overcome

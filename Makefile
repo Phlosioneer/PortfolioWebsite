@@ -59,7 +59,7 @@ $(WEB_OUTPUT_DIR)splide.min.css:
 
 
 # Generic Recipes
-$(GENERATED_HTML_FILES) &: $(TEMPLATES) $(GENERATOR) resources/projects.toml
+$(GENERATED_HTML_FILES) &: $(TEMPLATES) $(GENERATOR) resources/projects.toml customSpellDictionary.txt
 	@mkdir -p $(WEB_OUTPUT_DIR)
 	node $(GENERATOR) "$(abspath $(TEMPLATE_DIR))" "$(abspath $(WEB_OUTPUT_DIR))"
 

@@ -10,9 +10,64 @@ const toml = require('toml');
 const mustache = require('mustache');
 const imageSize = util.promisify(require('image-size'));
 const showdown = require('showdown');
+const Typo = require('typo-js');
 
 const templateDir = process.argv[2];
 const outputDir = process.argv[3];
+
+async function initSpellChecker() {
+	const spellChecker = new Typo("en_US");
+	const whitelistFile = await fs.readFile(path.join(".", "customSpellDictionary.txt"));
+	const whitelist = whitelistFile.toString()
+		.split('\n')
+		.filter(word => word !== '' && word[0] != '#')
+		.map(word => word.replace('\r', ''));
+	return {
+		whitelist: whitelist,
+		checker: spellChecker
+	};
+}
+
+function isNumeric(str) {
+	return !!(str.match(/^\d*$/));
+}
+
+function fancySpellCheck(spellChecker, text, name) {
+	if (text === undefined || text === null) {
+		return;
+	}
+	// Remove markdown links.
+	var newText = text.replace(/\[.*?\]\s*\(.*?\)/g, "");
+	// Remove most punctuation.
+	var newText = newText.replace(/[.*_,()?!:;/]/g, '');
+
+	const words = newText.split(/\s/);
+	const badWords = words
+		.filter(word => word != '')
+		.filter(word => !isNumeric(word))
+		.filter(word => !spellChecker.checker.check(word))
+		.filter(word => !spellChecker.whitelist.includes(word));
+
+	badWords.forEach(word => {
+		if (word.search('-') != -1) {
+			// Check if this is two hyphenated words.
+			const subwords = word.split("-").filter(word => word != '');
+			var stillWrong = false;
+			for (var i in subwords) {
+				if (!spellChecker.checker.check(subwords[i]) && !spellChecker.whitelist.includes(subwords[i])) {
+					stillWrong = true;
+					break;
+				}
+			}
+			if (!stillWrong) {
+				return;
+			}
+		}
+		const position = text.search(word);
+		const line = text.substring(0, position).split('\n').length;
+		console.warn(name + " line " + line + ": Misspelled word '" +  word + "'");
+	});
+}
 
 async function readProjectData() {
 	const raw = await fs.readFile('resources/projects.toml');
@@ -94,7 +149,7 @@ function addTimeStamp(config) {
 }
 
 // Create computed fields, normalize data, and cleanup values
-async function expandProjectData(config) {
+async function expandProjectData(config, spellChecker) {
 	// Computed id field
 	Object.keys(config.projects).forEach(id => config.projects[id].id = id);
 
@@ -121,24 +176,24 @@ async function expandProjectData(config) {
 	const markdownPrefix = '<div class="markdown">';
 	const markdownSuffix = '</div>';
 	allProjects.forEach(project => {
+		fancySpellCheck(spellChecker, project.desc, project.id);
 		try {
 			project.desc = markdownPrefix + converter.makeHtml(project.desc) + markdownSuffix;
 		} catch (e) {
-			console.log("rethrowing top");
 			throw {
-				message: "Error while parsing markdown",
+				message: "Error while parsing project markdown",
 				original: project.desc,
 				error: e
 			};
 		}
 		if (project.screenshots) {
 			project.screenshots.forEach(screenshot => {
+				fancySpellCheck(spellChecker, screenshot.desc, project.id + " screenshot " + screenshot.image);
 				try {
 					screenshot.desc = markdownPrefix + converter.makeHtml(screenshot.desc) + markdownSuffix;
 				} catch (e) {
-					console.log("rethrowing bottom");
 					throw {
-						message: "Error while parsing markdown",
+						message: "Error while parsing screenshot markdown",
 						original: screenshot.desc,
 						error: e
 					};
@@ -216,9 +271,11 @@ function buildProjectPage(project) {
 
 async function main() {
 	const templatePromises = readTemplates();
+	const spellCheckerPromise = initSpellChecker();
 	const config = await readProjectData();
 	validateConfigFile(config);
-	await expandProjectData(config);
+	const spellChecker = await spellCheckerPromise;
+	await expandProjectData(config, spellChecker);
 	const projects = Object.values(config.projects);
 
 	var pages = [{
