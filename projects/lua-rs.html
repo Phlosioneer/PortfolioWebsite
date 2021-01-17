@@ -21,7 +21,7 @@
 		<div class="navbar-menu">
 			<div class="navbar-start">
 				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Jan 16 at 3:42 PM
+					Site is under construction! Some images and descriptions are missing. Last change: Jan 17 at 7:23 PM
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -38,8 +38,21 @@
 					<div class="media-content">
 						<h1 class="title">Lua Interpreter</h1>
 						<h2 class="subtitle">A lua script interpreter in pure rust</h2>
-						<div class="content"><div class="markdown"><p><strong>Lua-rs</strong> was a lua runtime implemented in rust. The library is able
-to parse lua code into an abstract syntax tree, and TODO: does it work?</p></div></div>
+						<div class="content"><div class="markdown"><p><strong>Lua-rs</strong> was a Lua interpreter implemented in rust. The library is able
+to parse Lua code into an abstract syntax tree. I started on this project
+because there were no pure Rust crates able to run Lua. The only option was
+to use a wrapper around the Lua C API, which was not very safe.</p>
+<p>Going into this project, I had a lot of experience with Lua: my
+<a href="jmaker">JMaker</a> project involved writing an interpreter for an extended
+version of Lua. However, I eventually lost the motivation to continue with
+the project. It used a recursive-descent parser, which I was unable to make
+safe in Rust. It also used a recursive expression evaluator, which was unsafe
+due to possible stack overflows. At the time I didn't know there were
+alternatives to recursive descent, and also got bogged down in the details of
+memory management in the AST-walking code.</p>
+<p>With my current knowledge of parsers and a better understanding of managing
+complex algorithms, I think I would be able to complete this project. However
+there are now multiple Rust crates available to parse and execute Lua safely.</p></div></div>
 					</div>
 					<!-- TODO: A nice-looking vertical dividor -->
 					<div class="media-right">			

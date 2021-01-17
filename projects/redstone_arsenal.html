@@ -21,7 +21,7 @@
 		<div class="navbar-menu">
 			<div class="navbar-start">
 				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Jan 16 at 3:42 PM
+					Site is under construction! Some images and descriptions are missing. Last change: Jan 17 at 7:23 PM
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -38,17 +38,28 @@
 					<div class="media-content">
 						<h1 class="title">Patch for Redstone Arsenal</h1>
 						<h2 class="subtitle">Script to parse and modify java bytecode</h2>
-						<div class="content"><div class="markdown"><p>Redstone Arsenal is a minecraft mod. I didn't have the 
-minecraft development environment set up, so I wrote a script 
-to edit the mod's compiled .java files. The script changes
-several constants over 8 files to rebalance the mod. It scans
+						<div class="content"><div class="markdown"><p>Redstone Arsenal is a Minecraft mod. I didn't have the 
+Minecraft development environment set up, so I wrote a script 
+to edit the mod's compiled Java files. The script changes
+several constants over 8 files to re-balance the mod. It scans
 for code that assigns the constants and transforms them to use
 new constants. The integers involved are near the maximum signed
 value of a Short, and increasing their size was very difficult.</p>
 <p>First, the script parses the requested changes in an abbreviated
 format. Patches are described by the name of the variable, its value,
 and which file(s) have that variable. Then it reads the JVM bytecode,
-which is separated into a constants table and the code body for each</p></div></div>
+which is separated into a constants table and the code body for each
+function. The constants table also contains type information like the
+names for each of the fields.</p>
+<p>Next it iterates through each patch, and starts transforming it. Constants
+that fit within 2 bytes before and after the patch were easy to implement,
+and just required changing an inlined constant. Constants that were
+originally 4 bytes were also easy; their entry in the constants table
+was overwritten with the new value.</p>
+<p>Constants that were 2 bytes before the patch but were 4 bytes after
+the patch required more attention. Constant numbers larger than 2
+bytes required a new entry in the constants table and a different opcode.</p>
+<p>The script worked perfectly, and continued to work when the mod updated.</p></div></div>
 					</div>
 					<!-- TODO: A nice-looking vertical dividor -->
 					<div class="media-right">			

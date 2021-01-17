@@ -21,7 +21,7 @@
 		<div class="navbar-menu">
 			<div class="navbar-start">
 				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Jan 16 at 3:42 PM
+					Site is under construction! Some images and descriptions are missing. Last change: Jan 17 at 7:23 PM
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -46,14 +46,14 @@ partially re-implemented it in Rust. The original C source for the game is
 available on the internet, but it's poorly commented with minimal variable
 names. The first goal of the project was to learn more about the C Foreign Function
 Interface (FFI) by implementing some functions in Rust and then linking the
-binaries together. The second goal of the project was to practice reverse-
+binaries together. The second goal of the project was to practice reverse
 engineering algorithms and legacy code.</p>
 <p>I made an effort to not just blindly translate the C into Rust for each
 function. Instead, I figured out what the function was doing, its purpose in
 the game, and refactored the code as I translated it.</p>
 <p>An issue that appeared early on was the difficulty of testing changes. I
 was able to make unit tests for individual Rust functions, but integration
-tests were done by manually playing the game. That didn't even work very well&semi;
+tests were done by manually playing the game. That didn't even work very well;
 sometimes replacing a function would cause bugs to appear in code I hadn't even
 looked at yet. To address these issues, I created an integration testing program
 that recorded manual inputs and the original program's output text. It then ran
