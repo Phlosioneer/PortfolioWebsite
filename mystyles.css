@@ -10139,6 +10139,7 @@ a.has-text-danger-dark:hover, a.has-text-danger-dark:focus {
 
 .featured-project {
   transition: transform 0.5s ease;
+  height: 100%;
 }
 .featured-project:hover {
   transform: scale(1.05);

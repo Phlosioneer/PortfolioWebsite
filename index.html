@@ -20,7 +20,7 @@
 		<div class="navbar-menu">
 			<div class="navbar-start">
 				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Jan 27 at 8:52 PM
+					Site is under construction! Some images and descriptions are missing. Last change: Jan 27 at 9:40 PM
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -34,10 +34,34 @@
 		<div class="section-link" id="about"></div>
 		<div class="card">
 			<div class="card-content">
-
+				<script>
+					function revealE() {
+						var elem = document.getElementById("e_m_a_i_l");
+						var scram1 = "mf" + elem.innerHTML.slice(2) + "lkjfsl;htkhtsmgffjld;skfjrgr";
+						var filter1 = "0tdm42azgehr";
+						var filter2 = "far7sdt4asm";
+						var scram2 = "";
+						for (var i = 0; i < scram1.length; i++) {
+							if (filter1.indexOf(scram1.charAt(i)) != -1) {
+								scram2 += scram1.charAt(i);
+							}
+						}
+						var scram3 = "";
+						for (var i = 0; i < scram2.length; i++) {
+							if (filter2.indexOf(scram2.charAt(i)) != -1) {
+								scram3 += scram2.charAt(i);
+							}
+						}
+						elem.innerHTML = scram3 + "@gmail.com";
+						setTimeout(() => elem.href = "mailto:" + scram3 + "@gmail.com", 60);
+					}
+				</script>
 				<div class="columns">
 					<div class="column is-3">
 						<img src="/profilePicture.jpg" class="profile">
+						<a href="https://github.com/Phlosioneer">Github</a><br/>
+						<a href="https://www.linkedin.com/in/matthew-rogge-814bba117/">LinkedIn</a><br/>
+						Email: <a id="e_m_a_i_l" onclick="revealE()">[reveal]</a>
 					</div>
 					<div class="column">
 						<h1 class="title">About Me</h1>
