@@ -10168,4 +10168,9 @@ a.like-div:hover {
   transform: translateY(-4.75rem);
 }
 
+img.profile {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 /*# sourceMappingURL=mystyles.css.map */

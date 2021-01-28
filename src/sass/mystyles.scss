@@ -63,3 +63,8 @@ a.like-div {
 	transform: translateY(-$navbar-height - $section-padding-amount);
 }
 
+// Make profile image look good
+img.profile {
+	object-fit: cover;
+	border-radius: 50%;
+}
