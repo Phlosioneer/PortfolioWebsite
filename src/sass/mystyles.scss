@@ -27,6 +27,9 @@ $transition-duration: 0.5s;
 .featured-project {
 	transition: transform $transition-duration ease;
 
+	// Keep their bottoms aligned, even if some have more than one line of text.
+	height: 100%;
+
 	// Expand the card slightly on mouseover.
 	&:hover {
 		transform: scale(1.05);
