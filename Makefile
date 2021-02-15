@@ -9,10 +9,10 @@ TEMPLATE_DIR:=resources/templates/
 GENERATOR:=src/server/generator.js
 HOST:=src/server/host.js
 TEMP_DIR:=generated/tmp/
-IMAGES_DIR:=resources/images
+IMAGES_DIR:=resources/images/
 
 # Computed variables
-SRC_IMAGES:=$(wildcard $(IMAGES_DIR)/*)
+SRC_IMAGES:=$(wildcard $(IMAGES_DIR)*/*.*) $(wildcard $(IMAGES_DIR)*.*)
 DEST_IMAGES:=$(subst $(IMAGES_DIR), $(WEB_OUTPUT_DIR), $(SRC_IMAGES))
 GENERATED_FILES:=$(addprefix $(WEB_OUTPUT_DIR), $(WEB_FILES) $(DEPENDENCIES)) $(DEST_IMAGES)
 GENERATED_HTML_FILES:=$(filter %.html, $(GENERATED_FILES))
