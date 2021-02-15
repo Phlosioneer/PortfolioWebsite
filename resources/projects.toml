@@ -178,15 +178,15 @@ As part of this project, I used my [TiledMapLoader](tiled_map_loader) library.
 """
 
 [[projects.blue_lagoon.screenshots]]
-image = "placeholder.png"
+image = "BlueLagoonMain.png"
 desc = """
 This is what the board looks like in-game. All of the various indicators on the top
 and left of the screen work, but have nothing to display. The board is made of hex
 tiles that highlight when the mouse is over them.
 """
 
-[[projects.blue_lagoon.screnshots]]
-image = "placeholder.png"
+[[projects.blue_lagoon.screenshots]]
+image = "BlueLagoonMenus.png"
 desc = """
 These are some of the overlays. Each scoring category has a tooltip-like window to
 explain the game mechanics of the scoring.
