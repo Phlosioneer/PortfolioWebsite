@@ -21,7 +21,7 @@
 		<div class="navbar-menu">
 			<div class="navbar-start">
 				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Jan 27 at 9:40 PM
+					Site is under construction! Some images and descriptions are missing. Last change: Feb 15 at 6:46 PM
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -66,7 +66,7 @@ project instead.</p>
 					<ul class="splide__list">
 						<li class="columns splide__slide">
 							<div class="column">
-								<img src="/placeholder.png" width="1280" height="960">
+								<img src="/blue_lagoon/BlueLagoonMain.png" width="1289" height="877">
 							</div>
 							<div class="column">
 								<div class="content">
@@ -76,12 +76,24 @@ tiles that highlight when the mouse is over them.</p></div>
 								</div>
 							</div>
 						</li>
+						<li class="columns splide__slide">
+							<div class="column">
+								<img src="/blue_lagoon/BlueLagoonMenus.png" width="836" height="421">
+							</div>
+							<div class="column">
+								<div class="content">
+									<div class="markdown"><p>These are some of the overlays. Each scoring category has a tooltip-like window to
+explain the game mechanics of the scoring.</p></div>
+								</div>
+							</div>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script>
-		new Splide('.splide').mount();
+		window.splideInstance = new Splide('.splide');
+		window.splideInstance.mount();
 	</script>
 </body>
