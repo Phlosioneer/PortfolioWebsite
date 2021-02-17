@@ -6,8 +6,11 @@ Utf
 COVID-19
 UI
 JVM
+JVM's
 AST
 32-bit
+TMX
+TSX
 
 # Languages
 JSX
@@ -22,6 +25,9 @@ JSON
 Verilog
 Mips
 MIPS
+MMO
+Prolog
+Jupyter
 
 # Names
 Zork
@@ -34,6 +40,7 @@ JMaker
 Gradle
 Gradle's
 Minecraft
+Minecraft's
 Lua-rs
 Zachtronics
 Molek
@@ -42,8 +49,13 @@ Carcassonne
 TiledMapLoader
 Sudoku
 Bucknell
+Github
 
 # Words and Jargon
+tooltip
+Covid
+typecheck
+regex
 internet
 hacky
 handheld
@@ -67,3 +79,7 @@ plugin
 mod's
 inlined
 boardgame
+
+# Non-Words
+"fconst1"
+"ldc"

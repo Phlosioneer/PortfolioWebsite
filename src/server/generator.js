@@ -171,12 +171,22 @@ async function expandProjectData(config, spellChecker) {
 			Object.assign(screenshot, await resolveImage(project, screenshot.image));
 		}));
 
+	// Perform spellchecking
+	allProjects.forEach(project => {
+		fancySpellCheck(spellChecker, project.brief, project.id + " brief");
+		fancySpellCheck(spellChecker, project.desc, project.id + " desc");
+		if (project.screenshots) {
+			project.screenshots.forEach(screenshot => {
+				fancySpellCheck(spellChecker, screenshot.desc, project.id + " screenshot " + screenshot.image);
+			});
+		}
+	});
+
 	// Convert markdown into html.
 	const converter = new showdown.Converter();
 	const markdownPrefix = '<div class="markdown">';
 	const markdownSuffix = '</div>';
 	allProjects.forEach(project => {
-		fancySpellCheck(spellChecker, project.desc, project.id);
 		try {
 			project.desc = markdownPrefix + converter.makeHtml(project.desc) + markdownSuffix;
 		} catch (e) {
@@ -188,7 +198,6 @@ async function expandProjectData(config, spellChecker) {
 		}
 		if (project.screenshots) {
 			project.screenshots.forEach(screenshot => {
-				fancySpellCheck(spellChecker, screenshot.desc, project.id + " screenshot " + screenshot.image);
 				try {
 					screenshot.desc = markdownPrefix + converter.makeHtml(screenshot.desc) + markdownSuffix;
 				} catch (e) {

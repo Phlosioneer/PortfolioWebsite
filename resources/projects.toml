@@ -1,13 +1,14 @@
 
 featured = [
 	"penguin",
-	"tiled_map_loader",
-	"lights_out",
 	"blue_lagoon",
+	"lights_out",
+	"bytecode_editor",
 ]
 
 not_featured = [
 	"portfolio",
+	"tiled_map_loader",
 	"zork",
 	"covid_questionnaire",
 	"jmaker",
@@ -16,7 +17,6 @@ not_featured = [
 	"download_hawk",
 	"color_picker",
 	"gw2_tradingpost",
-	"redstone_arsenal",
 	"knights_dialer",
 	"lua-rs",
 	"pipelined_mips",
@@ -30,7 +30,7 @@ not_featured = [
 name = "Penguin"
 language = "Java"
 dates = [2012]
-brief = "A java game about a sliding penguin"
+brief = "A Java based puzzle game about a sliding penguin"
 image = "placeholder.png"
 desc = """
 **Penguin** was a small tile-based puzzle game I first made in my senior year of
@@ -49,13 +49,13 @@ copy has been lost over the years.
 name = "Covid Questionnaire"
 language = "Javascript"
 dates = [2020]
-brief = "A Covid survey for an Orthodontist"
+brief = "A Covid screening survey for an Orthodontist"
 gitlab = "https://gitlab.com/Phlosioneer/covid-questions"
 
 [projects.zork]
 name = "Zork"
 language = [ "C", "Rust" ]
-brief = "Project to translate zork into Rust"
+brief = "Project to translate the classic text-based adventure game Zork into Rust"
 image = "placeholder.png"
 repo = "https://gitlab.com/Phlosioneer/zork-rs"
 desc = """
@@ -130,7 +130,7 @@ to draw the grid.
 [projects.portfolio]
 name = "Portfolio Website"
 language = "Javascript"
-brief = "This website!"
+brief = "This website! Made from scratch without frameworks and hosted on Github"
 repo = "https://github.com/Phlosioneer/PortfolioWebsite"
 desc = """
 **My Portfolio** is this website that you're viewing right now. I
@@ -160,7 +160,7 @@ An early mockup of the portfolio website.
 [projects.blue_lagoon]
 name = "Blue Lagoon"
 language = "Processing"
-brief = "Digital implementation of the board game"
+brief = "Digital implementation of the four player board game Blue Lagoon"
 repo = "https://github.com/Phlosioneer/BlueLagoon"
 desc = """
 **Blue Lagoon** was an attempt to build a digital version of the Blue Lagoon
@@ -195,7 +195,7 @@ explain the game mechanics of the scoring.
 [projects.jmaker]
 name = "JMaker"
 language = "Java"
-brief = "Build system hybrid between Make and Gradle"
+brief = "Build system hybrid between Make and Gradle for Java projects with complex dependencies"
 repo = "https://github.com/Phlosioneer/JMaker"
 desc = """
 **JMaker** was born from frustration with using Gradle for managing Java
@@ -273,49 +273,79 @@ It searched for any items worth more than the sum of their parts,
 after accounting for buying and selling tax.
 """
 
-[projects.redstone_arsenal]
-name = "Patch for Redstone Arsenal"
-language = "Jupyter Notebook"
-brief = "Script to parse and modify java bytecode"
+[projects.bytecode_editor]
+name = "Python JVM Bytecode Editing Library"
+language = "Python"
+brief = "Script to parse and modify Java bytecode files"
 desc = """
-Redstone Arsenal is a Minecraft mod. I didn't have the 
-Minecraft development environment set up, so I wrote a script 
-to edit the mod's compiled Java files. The script changes
-several constants over 8 files to re-balance the mod. It scans
-for code that assigns the constants and transforms them to use
-new constants. The integers involved are near the maximum signed
-value of a Short, and increasing their size was very difficult.
+Over the years, I've wanted to tweak Minecraft Mods slightly for
+balance adjustments and custom behaviors. At first, I only wanted
+to change a few static constants, but my requirements evolved over
+time to include new behaviors and even rewriting some functions. In
+the process of making python scripts and Jupyter Notebooks to patch
+these files, I slowly built a bytecode editing library to make the
+task simpler. I finally reached the point where it made more sense
+to make a fully-featured library than repeated ad-hoc solutions.
 
-First, the script parses the requested changes in an abbreviated
-format. Patches are described by the name of the variable, its value,
-and which file(s) have that variable. Then it reads the JVM bytecode,
-which is separated into a constants table and the code body for each
-function. The constants table also contains type information like the
-names for each of the fields.
+There are no other python libraries for automatically manipulating
+JVM files, so I combined all the knowledge I had accumulated into one
+library and command-line utility. The basics were mostly done - parsing,
+simple modifications, and repackaging the edited class files into a jar.
+I created a patching system that used regex to decide which files to pull
+out of a jar and which patches to apply to those files. I made a backup
+system to save copies of the clean jar file before patching, and a command
+to restore the backup if the patches went wrong.
 
-Next it iterates through each patch, and starts transforming it. Constants
-that fit within 2 bytes before and after the patch were easy to implement,
-and just required changing an inlined constant. Constants that were
-originally 4 bytes were also easy; their entry in the constants table
-was overwritten with the new value.
+The difficult part was stack frame analysis. Each Java method contains a
+table of stack frames, which are used to typecheck the bytecode. Unlike
+the rest of the class file format, the stack map table and stack frames are
+very poorly documented. Many details are only specified in terms of a
+Prolog verification program, which I had to reverse engineer to reveal the
+specified behavior. Adding to the difficulty, stack frames are encoded in
+an extremely strange, highly compressed format, with several special-cased
+behaviors.
 
-Constants that were 2 bytes before the patch but were 4 bytes after
-the patch required more attention. Constant numbers larger than 2
-bytes required a new entry in the constants table and a different opcode.
+Even once the stack frames were parsed and re-serialized correctly, it
+was very difficult to expose them to patch code in a convenient way. The
+placement of the stack frames roughly follows a Basic Block breakdown of
+the assembly code: each instruction that is a target of a branch must have
+a stack frame entry. Frames are also needed whenever a new local variable is
+defined, and local variables are stored in a stack format, so defining a new
+local variable is not a simple process. The new local variable needs to be
+put into a scope as defined by its placement in the local variable stack.
 
-The script worked perfectly, and continued to work when the mod updated.
+One extra challenge imposed by my testing suite was that the class file had
+to be generated in the same way as the original compiler did. This is because
+parsing the file into a convenient representation still needed to be serialized
+exactly the same as it was originally. That meant I couldn't take shortcuts
+with bytecode instruction generation; there are many short instructions for
+encoding common constants, common local variables, and common stack manipulations.
+So for example, parsing the bytecode turned "fconst_1" into a python float 1.0;
+but serializing the bytecode, instead of the more general "ldc" opcode for
+loading constants, the bytecode had to be serialized back into "fconst_1".
+In this instance that is a simple check, however there are 20 special constant
+opcodes, 40 special local variable loading and storing opcodes, 5 special
+branches for comparing with zero, 4 variants of each arithmetic opcode, 5
+variants of each array manipulation opcode, 3 different ways to create an
+array, etc. The JVM's bytecode has a lot of redundancy that needs to be removed
+for patches, and re-applied for serializing.
+
+The library is currently being used by a patching harness based around
+Minecraft's folder structure and the particular goal of mod adjustment.
+However, the library was designed to stand on its own merits and is not
+specific to Minecraft in any way.
 """
 
 [projects.knights_dialer]
-name = "Knight's Dialar Puzzle"
+name = "Knight's Dialer Puzzle"
 language = "Jupyter Notebook" # TODO: Just python?
-brief = "Solves the Kight's Dialar puzzle"
+brief = "Solves the Knight's Dialer puzzle"
 
 [projects.lua-rs]
 name = "Lua Interpreter"
 language = "Rust"
 repo = "https://gitlab.com/Phlosioneer/lua-rs"
-brief = "A lua script interpreter in pure rust"
+brief = "A Lua script interpreter in pure Rust"
 desc = """
 **Lua-rs** was a Lua interpreter implemented in rust. The library is able
 to parse Lua code into an abstract syntax tree. I started on this project
@@ -341,7 +371,7 @@ there are now multiple Rust crates available to parse and execute Lua safely.
 [projects.pipelined_mips]
 name = "Pipelined MIPS CPU"
 language = "Verilog"
-brief = "A fully functional 32bit MIPS CPU core"
+brief = "A fully functional 32-bit MIPS CPU core"
 repo = "https://github.com/Phlosioneer/pipelined-mips"
 desc = """
 **Pipelined MIPS** is a fully pipelined 32-bit [MIPS]
@@ -385,7 +415,7 @@ This project is my attempt to implement that algorithm.
 [projects.sudoku_interactive]
 name = "Interactive Sudoku"
 language = "Javascript"
-brief = "A sudoku game that teaches the player advanced techniques"
+brief = "A Sudoku game that teaches the player advanced techniques"
 repo = "TODO"
 desc = """
 **Interactive Sudoku** is an app that helps players improve their Sudoku
