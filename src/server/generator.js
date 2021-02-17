@@ -145,7 +145,13 @@ function addTimeStamp(config) {
 	} else {
 		timeSuffix = "AM";
 	}
-	config.time = ((date.getHours() % 12) + 1) + ":" + date.getMinutes() + " " + timeSuffix;
+	var minuteString = "" + date.getMinutes();
+	if (minuteString.length == 0) {
+		minuteString = "00";
+	} else if (minuteString.length == 1) {
+		minuteString = "0" + minuteString;
+	}
+	config.time = ((hours % 12) + 1) + ":" + minuteString + " " + timeSuffix;
 }
 
 // Create computed fields, normalize data, and cleanup values
