@@ -2,14 +2,15 @@
 # Use `make run` to start localhost web server.
 
 # Input variables
-WEB_FILES:=index.html mystyles.css $(notdir $(wildcard src/client/*))
+WEB_FILES:=index.html mystyles.css $(notdir $(wildcard src/client/*)) CNAME
 DEPENDENCIES:=splide.js splide.min.css fontawesome/fontawesome.js fontawesome/solid.js
 WEB_OUTPUT_DIR:=generated/web/
-TEMPLATE_DIR:=resources/templates/
 GENERATOR:=src/server/generator.js
 HOST:=src/server/host.js
 TEMP_DIR:=generated/tmp/
+RESOURCES_DIR:=resources/
 IMAGES_DIR:=resources/images/
+TEMPLATE_DIR:=resources/templates/
 
 # Computed variables
 SRC_IMAGES:=$(wildcard $(IMAGES_DIR)*/*.*) $(wildcard $(IMAGES_DIR)*.*)
@@ -41,6 +42,8 @@ clean:
 
 publish: all $(WEB_OUTPUT_DIR)CNAME
 	$(PUBLISH_SCRIPT) "$(WEB_OUTPUT_DIR)"
+
+.PHONY: all, run, clean, publish
 
 # Dependency Recipes
 $(WEB_OUTPUT_DIR)fontawesome/fontawesome.js:
@@ -76,9 +79,6 @@ $(WEB_OUTPUT_DIR)%.css: src/sass/%.scss
 $(WEB_OUTPUT_DIR)%.js: src/client/%.js
 	cp $^ $@
 
-$(WEB_OUTPUT_DIR)CNAME: CNAME
-	cp $^ $@
-
 $(WEB_OUTPUT_DIR)%.png: $(IMAGES_DIR)%.png
 	@mkdir -p $(dir $@)
 	cp $^ $@
@@ -91,4 +91,8 @@ $(WEB_OUTPUT_DIR)%.jpeg: $(IMAGES_DIR)%.jpeg
 	@mkdir -p $(dir $@)
 	cp $^ $@
 
-.PHONY: all, run, clean, publish
+# Specific Recipes
+$(WEB_OUTPUT_DIR)CNAME: $(RESOURCES_DIR)github_cname.txt
+	@mkdir -p $(dir $@)
+	cp $^ $@
+
