@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/mystyles.css">
+	<link rel="stylesheet" href="/splide.min.css">
+	<link rel="stylesheet" href="/fontawesome/fontawesome.css">
+	<link rel="stylesheet" href="/fontawesome/solid.css">
+	<script src="/splide.js"></script>
+	<title>Python JVM Bytecode Editing Library | Portfolio | Matthew Rogge</title>
+</head>
+<body>
+	<nav class="navbar is-fixed-top">
+		<div class="navbar-brand">
+			<a role="button" class="navbar-burger">
+				<!-- Three empty spans to draw the burger icon -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</a>
+		</div>
+		<div class="navbar-menu">
+			<div class="navbar-start">
+				<div class="notification is-warning">
+					Site is under construction! Some images and descriptions are missing. Last change: Feb 17 at 5:54 PM
+				</div>
+			</div>
+			<div class="navbar-end">
+				<a class="navbar-item is-tab " href="/#about">About Me</a>
+				<a class="navbar-item is-tab is-active" href="/#projects">Projects</a>
+				<a class="navbar-item is-tab " href="contact.html">Contact</a>
+				<a class="navbar-item" href="resume.pdf">Resume&nbsp;<i class="fas fa-external-link-alt"></i></a></div>
+		</div>
+	</nav>
+	<div class="section">
+		<div class="card">
+			<div class="card-content">
+				<div class="media">
+					<div class="media-content">
+						<h1 class="title">Python JVM Bytecode Editing Library</h1>
+						<h2 class="subtitle">Script to parse and modify Java bytecode files</h2>
+						<div class="content"><div class="markdown"><p>Over the years, I've wanted to tweak Minecraft Mods slightly for
+balance adjustments and custom behaviors. At first, I only wanted
+to change a few static constants, but my requirements evolved over
+time to include new behaviors and even rewriting some functions. In
+the process of making python scripts and Jupyter Notebooks to patch
+these files, I slowly built a bytecode editing library to make the
+task simpler. I finally reached the point where it made more sense
+to make a fully-featured library than repeated ad-hoc solutions.</p>
+<p>There are no other python libraries for automatically manipulating
+JVM files, so I combined all the knowledge I had accumulated into one
+library and command-line utility. The basics were mostly done - parsing,
+simple modifications, and repackaging the edited class files into a jar.
+I created a patching system that used regex to decide which files to pull
+out of a jar and which patches to apply to those files. I made a backup
+system to save copies of the clean jar file before patching, and a command
+to restore the backup if the patches went wrong.</p>
+<p>The difficult part was stack frame analysis. Each Java method contains a
+table of stack frames, which are used to typecheck the bytecode. Unlike
+the rest of the class file format, the stack map table and stack frames are
+very poorly documented. Many details are only specified in terms of a
+Prolog verification program, which I had to reverse engineer to reveal the
+specified behavior. Adding to the difficulty, stack frames are encoded in
+an extremely strange, highly compressed format, with several special-cased
+behaviors.</p>
+<p>Even once the stack frames were parsed and re-serialized correctly, it
+was very difficult to expose them to patch code in a convenient way. The
+placement of the stack frames roughly follows a Basic Block breakdown of
+the assembly code: each instruction that is a target of a branch must have
+a stack frame entry. Frames are also needed whenever a new local variable is
+defined, and local variables are stored in a stack format, so defining a new
+local variable is not a simple process. The new local variable needs to be
+put into a scope as defined by its placement in the local variable stack.</p>
+<p>One extra challenge imposed by my testing suite was that the class file had
+to be generated in the same way as the original compiler did. This is because
+parsing the file into a convenient representation still needed to be serialized
+exactly the same as it was originally. That meant I couldn't take shortcuts
+with bytecode instruction generation; there are many short instructions for
+encoding common constants, common local variables, and common stack manipulations.
+So for example, parsing the bytecode turned "fconst<em>1" into a python float 1.0;
+but serializing the bytecode, instead of the more general "ldc" opcode for
+loading constants, the bytecode had to be serialized back into "fconst</em>1".
+In this instance that is a simple check, however there are 20 special constant
+opcodes, 40 special local variable loading and storing opcodes, 5 special
+branches for comparing with zero, 4 variants of each arithmetic opcode, 5
+variants of each array manipulation opcode, 3 different ways to create an
+array, etc. The JVM's bytecode has a lot of redundancy that needs to be removed
+for patches, and re-applied for serializing.</p>
+<p>The library is currently being used by a patching harness based around
+Minecraft's folder structure and the particular goal of mod adjustment.
+However, the library was designed to stand on its own merits and is not
+specific to Minecraft in any way.</p></div></div>
+					</div>
+					<!-- TODO: A nice-looking vertical dividor -->
+					<div class="media-right">			
+						<h3>Language:</h3><span><a>Python</a><!-- TODO: Outgoing-link symbol --></span>
+						<h3>Years:</h3><span>2012, 2020</span><!-- TODO: Make a config option for this -->
+						<h3>Github Repo</h3><span><a href=></a></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="card">
+			<div class="splide">
+				<div class="splide__track">
+					<ul class="splide__list">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		window.splideInstance = new Splide('.splide');
+		window.splideInstance.mount();
+	</script>
+</body>
