@@ -162,6 +162,7 @@ name = "Blue Lagoon"
 language = "Processing"
 brief = "Digital implementation of the four player board game Blue Lagoon"
 repo = "https://github.com/Phlosioneer/BlueLagoon"
+image = "BlueLagoonLogo.png"
 desc = """
 **Blue Lagoon** was an attempt to build a digital version of the Blue Lagoon
 board game. During this project I experimented with using Tiled's map file format
@@ -237,11 +238,15 @@ I wasn't able to get it working well enough to replace Gradle on that project.
 """
 
 [projects.pentago]
+# Hidden - not enough info
+hidden = true
 name = "Pentago"
 language = "Java" # TODO: Processing?
 brief = "Digital form of the board game"
 
 [projects.download_hawk]
+# Hidden - never implemented
+hidden = true
 name = "Download Hawk"
 language = "Java"
 brief = "Program to delete unused downloaded files"
@@ -337,6 +342,8 @@ specific to Minecraft in any way.
 """
 
 [projects.knights_dialer]
+# Hidden - not enough info
+hidden = true
 name = "Knight's Dialer Puzzle"
 language = "Jupyter Notebook" # TODO: Just python?
 brief = "Solves the Knight's Dialer puzzle"
@@ -413,6 +420,8 @@ This project is my attempt to implement that algorithm.
 #TODO: Use screenshots below to feature those drawings and the algorithm.
 
 [projects.sudoku_interactive]
+# Hidden - Never implemented
+hidden = true
 name = "Interactive Sudoku"
 language = "Javascript"
 brief = "A Sudoku game that teaches the player advanced techniques"
@@ -433,6 +442,8 @@ skill recognition system. The rest has not been implemented yet.
 """
 
 [projects.calculator]
+# Hidden - not enough info.
+hidden = true
 name = "Terminal Calculator"
 language = "Rust"
 brief = "A simple infix calculator"

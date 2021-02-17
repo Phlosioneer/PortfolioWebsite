@@ -159,8 +159,9 @@ async function expandProjectData(config, spellChecker) {
 	// Computed id field
 	Object.keys(config.projects).forEach(id => config.projects[id].id = id);
 
-	// Normalize language field to always be an array.
 	const allProjects = Object.values(config.projects);
+	
+	// Normalize language field to always be an array.
 	allProjects.forEach(project => {
 		if (typeof project.language === "string") {
 			project.language = [project.language];
@@ -249,8 +250,10 @@ function buildIndexPage(config) {
 	// Categorize projects.
 	const featured = [];
 	const normal = [];
-	config.featured.forEach(name => featured.push(config.projects[name]));
-	config.not_featured.forEach(name => normal.push(config.projects[name]));
+	config.featured.filter(name => !config.projects[name].hidden)
+		.forEach(name => featured.push(config.projects[name]));
+	config.not_featured.filter(name => !config.projects[name].hidden)
+		.forEach(name => normal.push(config.projects[name]));
 
 	const ret = {
 		featured: featured,
@@ -273,6 +276,9 @@ function buildNormalProjectSection(projects) {
 			row = [];
 		}
 	});
+	if (row.length != 0) {
+		table.push({"normalProjects": row});
+	}
 	return table;
 }
 
