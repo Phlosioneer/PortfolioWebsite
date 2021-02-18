@@ -39,7 +39,7 @@ function fancySpellCheck(spellChecker, text, name) {
 	// Remove markdown links.
 	var newText = text.replace(/\[.*?\]\s*\(.*?\)/g, "");
 	// Remove most punctuation.
-	var newText = newText.replace(/[.*_,()?!:;/]/g, '');
+	var newText = newText.replace(/[.*_,()?!:;/"]/g, '');
 
 	const words = newText.split(/\s/);
 	const badWords = words

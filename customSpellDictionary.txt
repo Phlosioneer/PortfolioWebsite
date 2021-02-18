@@ -11,6 +11,9 @@ AST
 32-bit
 TMX
 TSX
+AWS
+SMS
+SQL
 
 # Languages
 JSX
@@ -50,6 +53,9 @@ TiledMapLoader
 Sudoku
 Bucknell
 Github
+Serino
+Serino's
+Lightsail
 
 # Words and Jargon
 tooltip
@@ -79,7 +85,9 @@ plugin
 mod's
 inlined
 boardgame
+configurability
+webpage
 
 # Non-Words
-"fconst1"
-"ldc"
+fconst1
+ldc

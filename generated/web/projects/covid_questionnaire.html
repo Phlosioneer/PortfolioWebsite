@@ -21,7 +21,7 @@
 		<div class="navbar-menu">
 			<div class="navbar-start">
 				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Feb 17 at 6:48 PM
+					Site is under construction! Some images and descriptions are missing. Last change: Feb 17 at 8:14 PM
 				</div>
 			</div>
 			<div class="navbar-end">
@@ -37,8 +37,45 @@
 				<div class="media">
 					<div class="media-content">
 						<h1 class="title">Covid Questionnaire</h1>
-						<h2 class="subtitle">A Covid screening survey for an Orthodontist</h2>
-						<div class="content"><div class="markdown">undefined</div></div>
+						<h2 class="subtitle">A Covid screening survey for an orthodontist</h2>
+						<div class="content"><div class="markdown"><p>During the summer of 2020, I was contracted by a local orthodontist, Doctor Serino,
+to make website to screen patients for Covid symptoms. They were using an Covid
+questionnaire created at the beginning of the pandemic for doctors that wasn't
+configurable. The website was provided as-is, and wasn't updated after initial
+creation. By summer, the questions were outdated, and important questions were
+absent. I was asked to make a replacement questionnaire with certain extra features;
+however, partway through the initial development, the company that provided the
+original questionnaire released a new, updated service, at a cost far below what I
+was contracted for, with all the requested features and configurability.
+Unfortunately, the contract fell through.</p>
+<p>The website was composed of two questionnaire pages, an administration page, a
+database, email notifications sent to Serino's receptionist, and SMS notifications
+sent to patients. The patient flow began with an SMS message sent by an appointment
+reminder system that Serino used. The reminder message would contain a link to the
+main questionnaire page. The on the main questionnaire page, patients entered
+basic identifying info, and answered several questions about Covid symptoms,
+exposure, travel outside the country, etc. Once submitted, those responses were
+inserted into the database, and were checked for flagged answers (like responding
+"yes" to recent exposure). A summary of the patient's responses were then emailed
+to the receptionist, including either the flagged answers, or an all-clear message.
+The night before the patient's appointment, an SMS message was sent to the patient
+with a personalized link to the second questionnaire page. The second page was
+visited by the patient when they arrived in the parking lot. The patient would
+provide a description of their car, and possibly other questions if configured.
+Finally, an SMS message was sent to the receptionist with the patient's responses.</p>
+<p>The website that I made for the contract used several AWS services, to minimize cost.
+The entire questionnaire was configured through an SQL database. The webpage was
+rendered server-side by the Lightsail instance to minimize database network traffic
+costs. The rendered HTML was hosted on a Lightsail instance, along with the
+administration page. The administration page was able to edit the questions for each
+questionnaire, and configure which responses were flagged. Questions could be either
+a short text box, yes or no questions, or multiple choice with any number of options.
+In order to comply with medical record storage regulations, database entries older
+than a few days would be deleted, possibly first sending them to an email address.
+JSON web tokens were used to generate personalized links sent to patients, and to
+secure all REST endpoints. The Lightsail instance used endpoints to mediate all
+communication between public facing web pages and the SQL database. The instance
+used ExpressJS to serve endpoints, and Mustache to perform server-side rendering.</p></div></div>
 					</div>
 					<!-- TODO: A nice-looking vertical dividor -->
 					<div class="media-right">			
