@@ -10174,4 +10174,9 @@ img.profile {
   border-radius: 50%;
 }
 
+.media-right h3 {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
 /*# sourceMappingURL=mystyles.css.map */
