@@ -71,3 +71,10 @@ img.profile {
 	object-fit: cover;
 	border-radius: 50%;
 }
+
+.media-right h3 {
+	// Make the left bar Key: Value display on one line if able
+	display: inline;
+	// Put some space between the h3 element and the span content
+	margin-right: 0.5rem;
+}

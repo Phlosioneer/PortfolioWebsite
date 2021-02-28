@@ -56,8 +56,10 @@ Github
 Serino
 Serino's
 Lightsail
+Gitlab
 
 # Words and Jargon
+Repo
 tooltip
 Covid
 typecheck

@@ -26,9 +26,16 @@
 					</div>
 					<!-- TODO: A nice-looking vertical dividor -->
 					<div class="media-right">			
-						<h3>Language:</h3><span><a>{{language}}</a><!-- TODO: Outgoing-link symbol --></span>
-						<h3>Years:</h3><span>2012, 2020</span><!-- TODO: Make a config option for this -->
-						<h3>Github Repo</h3><span><a href={{repo}}>{{repo}}</a></span>
+						{{#leftBar}}
+						<div>
+							{{#url}}
+								<h3>{{name}}:</h3><span><a href="{{{url}}}">{{text}}</a></span>
+							{{/url}}
+							{{^url}}
+								<h3>{{name}}:</h3><span>{{text}}</span>
+							{{/url}}
+						</div>
+						{{/leftBar}}
 					</div>
 				</div>
 			</div>

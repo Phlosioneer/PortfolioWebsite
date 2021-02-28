@@ -161,13 +161,6 @@ async function expandProjectData(config, spellChecker) {
 
 	const allProjects = Object.values(config.projects);
 	
-	// Normalize language field to always be an array.
-	allProjects.forEach(project => {
-		if (typeof project.language === "string") {
-			project.language = [project.language];
-		}
-	});
-
 	// Expand the main image from a string to an object.
 	const imagePromises = allProjects.filter(project => project.image)
 		.map(async project => project.image = await resolveImage(project, project.image));
@@ -178,6 +171,27 @@ async function expandProjectData(config, spellChecker) {
 			Object.assign(screenshot, await resolveImage(project, screenshot.image));
 		}));
 
+	// Process left-bar entries.
+	allProjects.forEach(project => {
+		if (!project.left_bar) {
+			return;
+		}
+		const newLeftBar = [];
+		Object.entries(project.left_bar).forEach(([name, value]) => {
+			const leftBarEntry = { name: name };
+			if (typeof value == "string") {
+				leftBarEntry.text = value;
+			} else {
+				leftBarEntry.text = value.text;
+				leftBarEntry.url = value.url;
+			}
+			newLeftBar.push(leftBarEntry);
+		});
+		project.raw_left_bar = project.left_bar;
+		delete project.left_bar;
+		project.leftBar = newLeftBar;
+	});
+
 	// Perform spellchecking
 	allProjects.forEach(project => {
 		fancySpellCheck(spellChecker, project.brief, project.id + " brief");
@@ -185,6 +199,14 @@ async function expandProjectData(config, spellChecker) {
 		if (project.screenshots) {
 			project.screenshots.forEach(screenshot => {
 				fancySpellCheck(spellChecker, screenshot.desc, project.id + " screenshot " + screenshot.image);
+			});
+		}
+		if (project.leftBar) {
+			project.leftBar.forEach(entry => {
+				fancySpellCheck(spellChecker, entry.name, project.id + " left_bar");
+				if (entry.text) {
+					fancySpellCheck(spellChecker, entry.text, project.id + " left_bar " + entry.name);
+				}
 			});
 		}
 	});

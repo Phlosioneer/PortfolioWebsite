@@ -28,8 +28,6 @@ not_featured = [
 
 [projects.penguin]
 name = "Penguin"
-language = "Java"
-dates = [2012]
 brief = "A Java based puzzle game about a sliding penguin"
 image = "placeholder.png"
 desc = """
@@ -45,12 +43,13 @@ took approximately 20 hours to program and create assets. Unfortunately, the ori
 copy has been lost over the years.
 """
 
+[projects.penguin.left_bar]
+Language = "Java"
+Year = "2012"
+
 [projects.covid_questionnaire]
 name = "Covid Questionnaire"
-language = "Javascript"
-dates = [2020]
 brief = "A Covid screening survey for an orthodontist"
-gitlab = "https://gitlab.com/Phlosioneer/covid-questions"
 desc = """
 During the summer of 2020, I was contracted by a local orthodontist, Doctor Serino,
 to make website to screen patients for Covid symptoms. They were using an Covid
@@ -94,12 +93,15 @@ communication between public facing web pages and the SQL database. The instance
 used ExpressJS to serve endpoints, and Mustache to perform server-side rendering.
 """
 
+[projects.covid_questionnaire.left_bar]
+Language = "Javascript"
+Year = "2020"
+"Gitlab Repo" = { url="https://gitlab.com/Phlosioneer/covid-questions", text="Phlosioneer/covid-questions" }
+
 [projects.zork]
 name = "Zork"
-language = [ "C", "Rust" ]
 brief = "Project to translate the classic text-based adventure game Zork into Rust"
 image = "placeholder.png"
-repo = "https://gitlab.com/Phlosioneer/zork-rs"
 desc = """
 **Zork** is a classic text-based adventure game, and this project
 partially re-implemented it in Rust. The original C source for the game is
@@ -129,11 +131,13 @@ tangled in unwritten assumptions, indirection, and hacky algorithms for me to
 rewrite.
 """
 
+[projects.zork.left_bar]
+Languages = "C, Rust"
+"Gitlab Repo" = {url="https://gitlab.com/Phlosioneer/zork-rs", text="Phlosioneer/zork-rs"}
+
 [projects.lights_out]
 name = "Lights Out"
-language = "Javascript"
 brief = "Classic puzzle game as a web page"
-repo = "https://github.com/Phlosioneer/react-lights-out/"
 desc = """
 **Lights Out** is a game that I created to practice making web pages using React.
 It's a simple implementation of the classic handheld game Lights Out. The goal of
@@ -145,9 +149,12 @@ I used this project to experiment with babel, JSX, and React add-on packages
 for managing state. It was just complicated enough to be non-trivial to implement.
 """
 
+[projects.lights_out.left_bar]
+Language = "Javascript"
+"Github Repo" = { url="https://github.com/Phlosioneer/react-lights-out", text="Phlosioneer/react-lights-out" }
+
 [projects.connect_four]
 name = "Connect Four"
-language = "Several" # Languages will be listed in description
 brief = "Same game, in several languages"
 desc = """
 **Connect Four** was a multi-language project. I implemented the game
@@ -157,6 +164,10 @@ see the differences between how the languages operate, and how large or small
 each codebase was.
 """
 
+[projects.connect_four.left_bar]
+Languages = "C"
+"C Repo" = { url="https://github.com/Phlosioneer/ConnectFourC", text="Phlosioneer/ConnectFourC" }
+
 [[projects.connect_four.screenshots]]
 image = "ConnectFourC.png"
 desc = """
@@ -164,10 +175,7 @@ This is from the C implementation of Connect Four, for Windows. It uses the
 windows console API to switch the command prompt from OEM to Utf-8, checks that
 the user's console font supports Utf-8, and then uses the Box Drawing characters
 to draw the grid.
-
-[Github Repo](https://github.com/Phlosioneer/ConnectFourC)
 """
-# F09B is the Font Awesome code for github.
 
 [projects.portfolio]
 name = "Portfolio Website"
@@ -193,6 +201,10 @@ it very lightweight. I also decided to avoid JQuery, preferring built-in operati
 instead; and there are no polyfills, to keep the Javascript minimal.
 """
 
+[projects.portfolio.left_bar]
+Language = "Javascript"
+"Github Repo" = { url="https://github.com/Phlosioneer/PortfolioWebsite", text="Phlosioneer/PortfolioWebsite" }
+
 [[projects.portfolio.screenshots]]
 image = "PortfolioEarlyDev.png"
 desc = """
@@ -201,9 +213,7 @@ An early mockup of the portfolio website.
 
 [projects.blue_lagoon]
 name = "Blue Lagoon"
-language = "Processing"
 brief = "Digital implementation of the four player board game Blue Lagoon"
-repo = "https://github.com/Phlosioneer/BlueLagoon"
 image = "BlueLagoonLogo.png"
 desc = """
 **Blue Lagoon** was an attempt to build a digital version of the Blue Lagoon
@@ -219,6 +229,10 @@ project instead.
 
 As part of this project, I used my [TiledMapLoader](tiled_map_loader) library.
 """
+
+[projects.blue_lagoon.left_bar]
+Language = "Processing"
+"Github Repo" = { url = "https://github.com/Phlosioneer/BlueLagoon", text = "Phlosioneer/BlueLagoon" }
 
 [[projects.blue_lagoon.screenshots]]
 image = "BlueLagoonMain.png"
@@ -237,9 +251,7 @@ explain the game mechanics of the scoring.
 
 [projects.jmaker]
 name = "JMaker"
-language = "Java"
 brief = "Build system hybrid between Make and Gradle for Java projects with complex dependencies"
-repo = "https://github.com/Phlosioneer/JMaker"
 desc = """
 **JMaker** was born from frustration with using Gradle for managing Java
 projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
@@ -279,6 +291,10 @@ able to understand some asset-generating scripts for tileset management. Unfortu
 I wasn't able to get it working well enough to replace Gradle on that project.
 """
 
+[projects.jmaker.left_bar]
+Language = "Java"
+"Github Repo" = {url="https://github.com/Phlosioneer/JMaker", text="Phlosioneer/JMaker"}
+
 [projects.pentago]
 # Hidden - not enough info
 hidden = true
@@ -295,8 +311,6 @@ brief = "Program to delete unused downloaded files"
 
 [projects.color_picker]
 name = "Pixel Art Color Picker"
-language = "Processing"
-repo = "https://github.com/Phlosioneer/ColorPicker"
 brief = "Helper program for the math of pixel art coloring"
 desc = """
 This is a tool I made to help make palettes for pixel art. It uses
@@ -309,6 +323,10 @@ understand.
 
 The tool was made using Processing, without using external GUI libraries.
 """
+[projects.color_picker.left_bar]
+Language = "Processing"
+"Github Repo" = {url="https://github.com/Phlosioneer/ColorPicker", text="Phlosioneer/ColorPicker"}
+
 
 [projects.gw2_tradingpost]
 # Hidden - not enough info
@@ -325,7 +343,6 @@ after accounting for buying and selling tax.
 [projects.bytecode_editor]
 # TODO: Upload to github!
 name = "Python JVM Bytecode Editing Library"
-language = "Python"
 brief = "Script to parse and modify Java bytecode files"
 desc = """
 Over the years, I've wanted to tweak Minecraft Mods slightly for
@@ -386,6 +403,10 @@ However, the library was designed to stand on its own merits and is not
 specific to Minecraft in any way.
 """
 
+[projects.bytecode_editor.left_bar]
+Language = "Python"
+Year = "2020"
+
 [projects.knights_dialer]
 # Hidden - not enough info
 hidden = true
@@ -395,8 +416,6 @@ brief = "Solves the Knight's Dialer puzzle"
 
 [projects.lua-rs]
 name = "Lua Interpreter"
-language = "Rust"
-repo = "https://gitlab.com/Phlosioneer/lua-rs"
 brief = "A Lua script interpreter in pure Rust"
 desc = """
 **Lua-rs** was a Lua interpreter implemented in rust. The library is able
@@ -420,11 +439,13 @@ there are now multiple Rust crates available to parse and execute Lua safely.
 #TODO: Was lua-rs before or after JMaker?
 #TODO: How complete is lua-rs? Does it work?
 
+[projects.lua-rs.left_bar]
+Language = "Rust"
+"Gitlab Repo" = {url="https://gitlab.com/Phlosioneer/lua-rs", text="Phlosioneer/lua-rs"}
+
 [projects.pipelined_mips]
 name = "Pipelined MIPS CPU"
-language = "Verilog"
 brief = "A fully functional 32-bit MIPS CPU core"
-repo = "https://github.com/Phlosioneer/pipelined-mips"
 desc = """
 **Pipelined MIPS** is a fully pipelined 32-bit [MIPS]
 (https://en.wikipedia.org/wiki/MIPS_architecture) CPU made as a
@@ -441,7 +462,13 @@ opcodes, and added more tests.
 """
 #TODO: What software did we use to simulate it?
 
+[projects.pipelined_mips.left_bar]
+Language = "Verilog"
+"Github Repo" = {url="https://github.com/Phlosioneer/pipelined-mips", text="Phloioneer/pipelined-mips"}
+
 [projects.molek_solitaire]
+# Too many TODOs, not really worth the time right now
+hidden = true
 name = "Solver for Molek-Syntez Solitaire"
 language = "Rust"
 brief = "Solver for a very hard solitaire game from Zachtronics"
@@ -498,6 +525,8 @@ parsing.
 """
 
 [projects.carcassonne]
+# Hidden - Not really worth the time needed to flesh this out, yet.
+hidden = true
 name = "Carcassonne"
 language = "Java"
 brief = "Digital form of the board game"
@@ -514,9 +543,7 @@ that challenge, but lost interest in the project afterwards.
 
 [projects.tiled_map_loader]
 name = "TiledMapLoader Library"
-language = "Java"
 brief = "Java library to read TMX and TSX files"
-repo = "https://github.com/Phlosioneer/TiledMapLoader"
 desc = """
 **TiledMapLoader** is a library for parsing [Tiled's TMX/TSX file format]
 (https://www.mapeditor.org/). It is used my several of my other game projects,
@@ -524,3 +551,6 @@ including [Blue Lagoon](blue_lagoon) and [Pentago](pentago). It's with Java 8
 compliance, because I used it in some of my Processing projects and Processing only
 supports Java 8.
 """
+
+[projects.tiled_map_loader.left_bar]
+Language = "Java"
