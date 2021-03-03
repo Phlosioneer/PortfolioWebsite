@@ -122,8 +122,7 @@ sometimes replacing a function would cause bugs to appear in code I hadn't even
 looked at yet. To address these issues, I created an integration testing program
 that recorded manual inputs and the original program's output text. It then ran
 the C and Rust hybrid binary and checked the output against its recordings. The
-recordings were large, so I stored them in a [separate repository]
-(https://gitlab.com/Phlosioneer/zork-playback). With proper integration testing
+recordings were large, so I stored them in a [separate repository](https://gitlab.com/Phlosioneer/zork-playback). With proper integration testing
 set up, I made good progress.
 
 I stopped the project when I reached the command processing code. It was too
