@@ -123,39 +123,6 @@ function validateConfigFile(config) {
 	});
 }
 
-function addTimeStamp(config) {
-	const date = new Date();
-	const day = date.getDate();
-	var daySuffix;
-	if (day % 10 == 1) {
-		daySuffix = "st";
-	} else if (day % 10 == 2) {
-		daySuffix = "nd";
-	} else if (day % 10 == 3) {
-		daySuffix = "rd";
-	} else {
-		daySuffix = "th";
-	}
-	const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-  "July", "Aug", "Sept", "Oct", "Nov", "Dec"
-];
-	config.date = monthNames[date.getMonth()] + " " + day;
-	const hours = date.getHours();
-	var timeSuffix;
-	if (hours >= 12) {
-		timeSuffix = "PM";
-	} else {
-		timeSuffix = "AM";
-	}
-	var minuteString = "" + date.getMinutes();
-	if (minuteString.length == 0) {
-		minuteString = "00";
-	} else if (minuteString.length == 1) {
-		minuteString = "0" + minuteString;
-	}
-	config.time = ((hours % 12) + 1) + ":" + minuteString + " " + timeSuffix;
-}
-
 // Create computed fields, normalize data, and cleanup values
 async function expandProjectData(config, spellChecker) {
 	// Computed id field
@@ -285,7 +252,6 @@ function buildIndexPage(config) {
 		isIndex: true,
 	};
 
-	addTimeStamp(ret);
 	return ret;
 }
 
@@ -310,7 +276,6 @@ function buildProjectPage(project) {
 	const ret = {
 		isProject: true,
 	};
-	addTimeStamp(ret);
 	return Object.assign(ret, project);
 }
 

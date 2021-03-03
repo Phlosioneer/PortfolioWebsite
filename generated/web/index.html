@@ -18,11 +18,6 @@
 			</a>
 		</div>
 		<div class="navbar-menu">
-			<div class="navbar-start">
-				<div class="notification is-warning">
-					Site is under construction! Some images and descriptions are missing. Last change: Feb 27 at 8:53 PM
-				</div>
-			</div>
 			<div class="navbar-end">
 				<a class="navbar-item is-tab is-active" href="/#about">About Me</a>
 				<a class="navbar-item is-tab " href="/#projects">Projects</a>
@@ -87,54 +82,129 @@
 		<div class="section-link" id="projects"></div>
 		<div class="columns">
 				<div class="column">
-					<a class="like-div card featured-project" href="/projects/penguin.html">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="/placeholder.png" width="1280" height="960">
-							</figure>
-						</div>
+					<div class="card featured-project fading-text">
 						<div class="card-content">
-							<p class="title is-4">Penguin</p>
-							<div class="content">A Java based puzzle game about a sliding penguin</div>
+							<a class="like-div whole-card-link" href="/projects/penguin.html">
+								<p class="title is-4">Penguin</p>
+							</a>
+							<div class="content is-10-lines">
+								<div class="markdown"><p><strong>Penguin</strong> was a small tile-based puzzle game I first made in my senior year of
+high school to help with college admissions. It was based on the sliding ice puzzles
+of Pokemon's ice caves. The player controlled a penguin that could walk over ground, 
+and could slide over ice until it hit an object. The goal was to reach a door at the
+end of the level. Solutions involved paths that crossed over themselves multiple
+times.</p>
+<p>The project was done using Processing, a thin wrapper language around Java. It
+took approximately 20 hours to program and create assets. Unfortunately, the original 
+copy has been lost over the years.</p></div>
+							</div>
 						</div>
-					</a>
+					</div>
+
 				</div>
 				<div class="column">
-					<a class="like-div card featured-project" href="/projects/blue_lagoon.html">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<img src="/blue_lagoon/BlueLagoonLogo.png" width="661" height="662">
-							</figure>
-						</div>
+					<div class="card featured-project fading-text">
 						<div class="card-content">
-							<p class="title is-4">Blue Lagoon</p>
-							<div class="content">Digital implementation of the four player board game Blue Lagoon</div>
+							<a class="like-div whole-card-link" href="/projects/blue_lagoon.html">
+								<p class="title is-4">Blue Lagoon</p>
+							</a>
+							<div class="content is-10-lines">
+								<div class="markdown"><p><strong>Blue Lagoon</strong> was an attempt to build a digital version of the Blue Lagoon
+board game. During this project I experimented with using Tiled's map file format
+to handle UI elements and store all the game's data. I made a lot of progress with
+the assets and map file, but the project stalled while writing the code for the game.
+Using the map file for UI elements was not sustainable. The map file also just had
+too much data; the functions to parse the single file were getting unwieldy.</p>
+<p>To make more progress on the project, I would have to redo a lot of parsing code,
+split the game data into smaller files, and rewrite the UI. I decided to drop the
+project instead.</p>
+<p>As part of this project, I used my <a href="tiled_map_loader">TiledMapLoader</a> library.</p></div>
+							</div>
 						</div>
-					</a>
+					</div>
+
 				</div>
 				<div class="column">
-					<a class="like-div card featured-project" href="/projects/lights_out.html">
-						<div class="card-image">
-							<figure class="image is-4by3">
-							</figure>
-						</div>
+					<div class="card featured-project fading-text">
 						<div class="card-content">
-							<p class="title is-4">Lights Out</p>
-							<div class="content">Classic puzzle game as a web page</div>
+							<a class="like-div whole-card-link" href="/projects/lights_out.html">
+								<p class="title is-4">Lights Out</p>
+							</a>
+							<div class="content is-10-lines">
+								<div class="markdown"><p><strong>Lights Out</strong> is a game that I created to practice making web pages using React.
+It's a simple implementation of the classic handheld game Lights Out. The goal of
+the game is to reach a fully lit-up board. Lighting up a square also lights its
+adjacent and diagonal neighbors. It's a completed game, and can be played [right now.]
+(https://phlosioneer.github.io/react-lights-out/)</p>
+<p>I used this project to experiment with babel, JSX, and React add-on packages
+for managing state. It was just complicated enough to be non-trivial to implement.</p></div>
+							</div>
 						</div>
-					</a>
+					</div>
+
 				</div>
 				<div class="column">
-					<a class="like-div card featured-project" href="/projects/bytecode_editor.html">
-						<div class="card-image">
-							<figure class="image is-4by3">
-							</figure>
-						</div>
+					<div class="card featured-project fading-text">
 						<div class="card-content">
-							<p class="title is-4">Python JVM Bytecode Editing Library</p>
-							<div class="content">Script to parse and modify Java bytecode files</div>
+							<a class="like-div whole-card-link" href="/projects/bytecode_editor.html">
+								<p class="title is-4">Python JVM Bytecode Editing Library</p>
+							</a>
+							<div class="content is-10-lines">
+								<div class="markdown"><p>Over the years, I've wanted to tweak Minecraft Mods slightly for
+balance adjustments and custom behaviors. At first, I only wanted
+to change a few static constants, but my requirements evolved over
+time to include new behaviors and even rewriting some functions. In
+the process of making python scripts and Jupyter Notebooks to patch
+these files, I slowly built a bytecode editing library to make the
+task simpler. I finally reached the point where it made more sense
+to make a fully-featured library than repeated ad-hoc solutions.</p>
+<p>There are no other python libraries for automatically manipulating
+JVM files, so I combined all the knowledge I had accumulated into one
+library and command-line utility. The basics were mostly done - parsing,
+simple modifications, and repackaging the edited class files into a jar.
+I created a patching system that used regex to decide which files to pull
+out of a jar and which patches to apply to those files. I made a backup
+system to save copies of the clean jar file before patching, and a command
+to restore the backup if the patches went wrong.</p>
+<p>The difficult part was stack frame analysis. Each Java method contains a
+table of stack frames, which are used to typecheck the bytecode. Unlike
+the rest of the class file format, the stack map table and stack frames are
+very poorly documented. Many details are only specified in terms of a
+Prolog verification program, which I had to reverse engineer to reveal the
+specified behavior. Adding to the difficulty, stack frames are encoded in
+an extremely strange, highly compressed format, with several special-cased
+behaviors.</p>
+<p>Even once the stack frames were parsed and re-serialized correctly, it
+was very difficult to expose them to patch code in a convenient way. The
+placement of the stack frames roughly follows a Basic Block breakdown of
+the assembly code: each instruction that is a target of a branch must have
+a stack frame entry. Frames are also needed whenever a new local variable is
+defined, and local variables are stored in a stack format, so defining a new
+local variable is not a simple process. The new local variable needs to be
+put into a scope as defined by its placement in the local variable stack.</p>
+<p>One extra challenge imposed by my testing suite was that the class file had
+to be generated in the same way as the original compiler did. This is because
+parsing the file into a convenient representation still needed to be serialized
+exactly the same as it was originally. That meant I couldn't take shortcuts
+with bytecode instruction generation; there are many short instructions for
+encoding common constants, common local variables, and common stack manipulations.
+So for example, parsing the bytecode turned "fconst<em>1" into a python float 1.0;
+but serializing the bytecode, instead of the more general "ldc" opcode for
+loading constants, the bytecode had to be serialized back into "fconst</em>1".
+In this instance that is a simple check, however there are 20 special constant
+opcodes, 40 special local variable loading and storing opcodes, 5 special
+branches for comparing with zero, 4 variants of each arithmetic opcode, 5
+variants of each array manipulation opcode, 3 different ways to create an
+array, etc. The JVM's bytecode has a lot of redundancy that needs to be removed
+for patches, and re-applied for serializing.</p>
+<p>The library is currently being used by a patching harness based around
+Minecraft's folder structure and the particular goal of mod adjustment.
+However, the library was designed to stand on its own merits and is not
+specific to Minecraft in any way.</p></div>
+							</div>
 						</div>
-					</a>
+					</div>
+
 				</div>
 		</div>
 	</section>

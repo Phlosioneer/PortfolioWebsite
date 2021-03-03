@@ -10179,4 +10179,54 @@ img.profile {
   margin-right: 0.5rem;
 }
 
+.featured-project .whole-card-link .title {
+  padding-bottom: 0.75rem;
+}
+
+.is-1-line {
+  height: 1.43em;
+  overflow: hidden;
+}
+
+.is-2-lines {
+  height: 2.86em;
+  overflow: hidden;
+}
+
+.is-3-lines {
+  height: 4.29em;
+  overflow: hidden;
+}
+
+.is-10-lines {
+  height: 14.3em;
+}
+
+.card {
+  position: relative;
+}
+
+a.whole-card-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.fading-text {
+  position: relative;
+}
+.fading-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 70%, white 95%);
+}
+
 /*# sourceMappingURL=mystyles.css.map */
