@@ -16,10 +16,12 @@ $transition-duration: 0.5s;
 
 .normal-project {
 	transition: background $transition-duration ease;
+	
 	// Hover color for the not-featured projects' tile grid.
 	&:hover {
 		background: $primary-light;
 	}
+	
 	// Match the enclosing card's curved corners.
 	border-radius: $card-radius;
 }
@@ -78,3 +80,77 @@ img.profile {
 	// Put some space between the h3 element and the span content
 	margin-right: 0.5rem;
 }
+
+// Give card content titles a bit of padding.
+.featured-project .whole-card-link .title {
+	padding-bottom: 0.75rem;
+}
+
+// Fixed-size text box utils
+.is-1-line {
+	height: 1.43em;
+	overflow: hidden;
+}
+.is-2-lines {
+	height: 1.43em * 2;
+	overflow: hidden;
+}
+.is-3-lines {
+	height: 1.43em * 3;
+	overflow: hidden;
+}
+.is-10-lines {
+	height: (1.43em * 10)
+}
+
+
+
+//////////////
+// Nested-Link Magic
+// Based on https://heydon.github.io/Inclusive-Components/cards-pseudo-content-author-link/
+
+// Set the card as the container for all "absolute" children. Absolute children
+// elements will be relative to the card, rather than to the page.
+.card {
+	position: relative;
+}
+
+// Creates an "pseudo-element" after the content of the <a> tag. The new element
+// is then positioned to cover the whole parent card.
+a.whole-card-link::after {
+	// Content field is required for an ::after pseudo-element.
+	content: '';
+	
+	// Position this "element" to fully cover the card.
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+
+	// Make sure it's on top of everything else.
+	z-index: 10;
+}
+
+//////////////
+// Fading Text Magic
+// Similar approach as above
+.fading-text {
+	// The absolute position will use this element for its measurements.
+	position: relative;
+
+	&::after {
+		// Content field is required for an ::after pseudo-element.
+		content:'';
+
+		// Position this "element" to fully cover the fading-text element.
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(180deg, transparent 70%, white 95%);
+	}
+}
+
+

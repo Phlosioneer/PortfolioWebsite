@@ -1,13 +1,11 @@
-<a class="like-div card featured-project" href="/projects/{{{id}}}.html">
-	<div class="card-image">
-		<figure class="image is-4by3">
-			{{#image}}
-			<img src="{{{url}}}" width="{{width}}" height="{{height}}">
-			{{/image}}
-		</figure>
-	</div>
+<div class="card featured-project fading-text">
 	<div class="card-content">
-		<p class="title is-4">{{name}}</p>
-		<div class="content">{{brief}}</div>
+		<a class="like-div whole-card-link" href="/projects/{{{id}}}.html">
+			<p class="title is-4">{{name}}</p>
+		</a>
+		<div class="content is-10-lines">
+			{{{desc}}}
+		</div>
 	</div>
-</a>
+</div>
+
