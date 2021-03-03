@@ -1,7 +1,5 @@
 "use strict";
 
-// TODO: Check the width and height of images and add those to image elements.
-
 const path = require('path');
 const fs = require('fs/promises');
 const util = require('util');
@@ -36,10 +34,14 @@ function fancySpellCheck(spellChecker, text, name) {
 	if (text === undefined || text === null) {
 		return;
 	}
+	if (name.includes("Repo")) {
+		return;
+	}
 	// Remove markdown links.
 	var newText = text.replace(/\[.*?\]\s*\(.*?\)/g, "");
 	// Remove most punctuation.
-	var newText = newText.replace(/[.*_,()?!:;/"]/g, '');
+	var newText = newText.replace(/[.*_,()?!:;"]/g, '');
+	newText = newText.replace("/", " ");
 
 	const words = newText.split(/\s/);
 	const badWords = words
