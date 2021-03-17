@@ -1,0 +1,33 @@
+
+name = "Portfolio Website"
+language = "Javascript"
+brief = "This website! Made from scratch without frameworks and hosted on Github"
+repo = "https://github.com/Phlosioneer/PortfolioWebsite"
+desc = """
+**My Portfolio** is this website that you're viewing right now. I
+created it from scratch in November and December of 2020, during the COVID-19
+pandemic. This website uses configuration files to describe each of my programming
+projects, and a Node script to generate the static website from those config files.
+I use the templating language Mustache for splitting HTML into composable pieces,
+and I use ExpressJS for localhost development.
+
+A makefile manages the generator script and SCSS to CSS conversion. I decided
+to use Make for build management instead of Yeoman, Gulp, or others because of
+familiarity and simplicity.
+
+One early goal for the project was to minimize the dependencies, and provide an
+extremely light-weight site. I decided to avoid React and other similar frameworks,
+and use Bulma and plain HTML for visual effects. Bulma is a pure css library, making
+it very lightweight. I also decided to avoid JQuery, preferring built-in operations
+instead; and there are no polyfills, to keep the Javascript minimal.
+"""
+
+[left_bar]
+Language = "Javascript"
+"Github Repo" = { url="https://github.com/Phlosioneer/PortfolioWebsite", text="Phlosioneer/PortfolioWebsite" }
+
+[[screenshots]]
+image = "PortfolioEarlyDev.png"
+desc = """
+An early mockup of the portfolio website.
+"""

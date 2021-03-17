@@ -1,0 +1,37 @@
+
+name = "Blue Lagoon"
+brief = "Digital implementation of the four player board game Blue Lagoon"
+image = "BlueLagoonLogo.png"
+desc = """
+**Blue Lagoon** was an attempt to build a digital version of the Blue Lagoon
+board game. During this project I experimented with using Tiled's map file format
+to handle UI elements and store all the game's data. I made a lot of progress with
+the assets and map file, but the project stalled while writing the code for the game.
+Using the map file for UI elements was not sustainable. The map file also just had
+too much data; the functions to parse the single file were getting unwieldy.
+
+To make more progress on the project, I would have to redo a lot of parsing code,
+split the game data into smaller files, and rewrite the UI. I decided to drop the
+project instead.
+
+As part of this project, I used my [TiledMapLoader](tiled_map_loader) library.
+"""
+
+[left_bar]
+Language = "Processing"
+"Github Repo" = { url = "https://github.com/Phlosioneer/BlueLagoon", text = "Phlosioneer/BlueLagoon" }
+
+[[screenshots]]
+image = "BlueLagoonMain.png"
+desc = """
+This is what the board looks like in-game. All of the various indicators on the top
+and left of the screen work, but have nothing to display. The board is made of hex
+tiles that highlight when the mouse is over them.
+"""
+
+[[screenshots]]
+image = "BlueLagoonMenus.png"
+desc = """
+These are some of the overlays. Each scoring category has a tooltip-like window to
+explain the game mechanics of the scoring.
+"""

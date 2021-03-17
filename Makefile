@@ -11,6 +11,7 @@ TEMP_DIR:=generated/tmp/
 RESOURCES_DIR:=resources/
 IMAGES_DIR:=resources/images/
 TEMPLATE_DIR:=resources/templates/
+GENERATED_DEPS:=generated/htmlrules.d
 
 # Computed variables
 SRC_IMAGES:=$(wildcard $(IMAGES_DIR)*/*.*) $(wildcard $(IMAGES_DIR)*.*)
@@ -44,6 +45,10 @@ publish: all $(WEB_OUTPUT_DIR)CNAME
 	$(PUBLISH_SCRIPT) "$(WEB_OUTPUT_DIR)"
 
 .PHONY: all, run, clean, publish
+
+# Generated Makefiles
+#$(GENERATED_DEPS):
+
 
 # Dependency Recipes
 $(WEB_OUTPUT_DIR)fontawesome/fontawesome.js:

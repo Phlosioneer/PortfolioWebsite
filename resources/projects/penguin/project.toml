@@ -1,0 +1,20 @@
+
+name = "Penguin"
+brief = "A Java based puzzle game about a sliding penguin"
+image = "placeholder.png"
+desc = """
+**Penguin** was a small tile-based puzzle game I first made in my senior year of
+high school to help with college admissions. It was based on the sliding ice puzzles
+of Pokemon's ice caves. The player controlled a penguin that could walk over ground, 
+and could slide over ice until it hit an object. The goal was to reach a door at the
+end of the level. Solutions involved paths that crossed over themselves multiple
+times.
+
+The project was done using Processing, a thin wrapper language around Java. It
+took approximately 20 hours to program and create assets. Unfortunately, the original 
+copy has been lost over the years.
+"""
+
+[left_bar]
+Language = "Java"
+Year = "2012"

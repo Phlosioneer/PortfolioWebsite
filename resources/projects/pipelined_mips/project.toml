@@ -1,0 +1,22 @@
+
+name = "Pipelined MIPS CPU"
+brief = "A fully functional 32-bit MIPS CPU core"
+desc = """
+**Pipelined MIPS** is a fully pipelined 32-bit [MIPS]
+(https://en.wikipedia.org/wiki/MIPS_architecture) CPU made as a
+final project of a systems engineering class at Bucknell. The CPU is described
+by Verilog code using a reduced subset of Verilog, to enforce a logic-gate
+level understanding of the CPU. A team of three students and I designed and
+implemented the CPU over two months. It is able to run simple MIPS assembly
+programs. 
+
+The project was a success and was submitted in October of 2017. I
+continued working on it for another month after submission, to clean
+up the project and fix known bugs. I also added support for more
+opcodes, and added more tests.
+"""
+#TODO: What software did we use to simulate it?
+
+[left_bar]
+Language = "Verilog"
+"Github Repo" = {url="https://github.com/Phlosioneer/pipelined-mips", text="Phloioneer/pipelined-mips"}

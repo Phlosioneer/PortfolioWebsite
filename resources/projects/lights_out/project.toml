@@ -1,0 +1,17 @@
+
+name = "Lights Out"
+brief = "Classic puzzle game as a web page"
+desc = """
+**Lights Out** is a game that I created to practice making web pages using React.
+It's a simple implementation of the classic handheld game Lights Out. The goal of
+the game is to reach a fully lit-up board. Lighting up a square also lights its
+adjacent and diagonal neighbors. It's a completed game, and can be played [right now.]
+(https://phlosioneer.github.io/react-lights-out/)
+
+I used this project to experiment with babel, JSX, and React add-on packages
+for managing state. It was just complicated enough to be non-trivial to implement.
+"""
+
+[left_bar]
+Language = "Javascript"
+"Github Repo" = { url="https://github.com/Phlosioneer/react-lights-out", text="Phlosioneer/react-lights-out" }

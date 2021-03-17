@@ -1,0 +1,13 @@
+name = "TiledMapLoader Library"
+brief = "Java library to read TMX and TSX files"
+desc = """
+**TiledMapLoader** is a library for parsing [Tiled's TMX/TSX file format]
+(https://www.mapeditor.org/). It is used my several of my other game projects,
+including [Blue Lagoon](blue_lagoon) and [Pentago](pentago). It's with Java 8
+compliance, because I used it in some of my Processing projects and Processing only
+supports Java 8.
+"""
+
+[left_bar]
+Language = "Java"
+

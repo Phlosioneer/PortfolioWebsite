@@ -1,0 +1,46 @@
+
+name = "JMaker"
+brief = "Build system hybrid between Make and Gradle for Java projects with complex dependencies"
+desc = """
+**JMaker** was born from frustration with using Gradle for managing Java
+projects with nonstandard setups. Gradle's design prioritizes sane defaults, and
+build files should only need to describe deviations from the default project
+structure. This philosophy works excellently for pure Java projects, but runs into
+problems if the project mixes in other languages or dynamically generated resources.
+It also has a hard time running arbitrary code as part of its build files. Although
+it uses a programming language to define them, it only exposes an extremely small,
+minimal API. Each plugin has an API, but the details are often undocumented. Finally,
+it can have difficulties building an accurate dependency graph for unusual project
+setups.
+
+GNU Make has the opposite philosophy; it offers some defaults, but assumes very
+little about how it's being used. Make excels at managing complex build processes
+by using very robust bash integration and a well-defined dependency graph. However,
+makefiles are described using a very old language with strange corner cases and limitations.
+Notably, it has extreme difficulties handling commands, variable values, and bash commands
+that include colons. The Java command-line compiler (javac) makes use of colons in
+many of its commands, so Make has a hard time with Java.
+
+JMaker was an effort to make a tool that could leverage the strengths of each,
+with fewer downsides. It used Lua to define its configuration and commands, and uses
+a rule-based production system like Make. That would allow it to have a clear and
+well-defined dependency graph, with all the power of using an actual programming
+language for build files.
+
+I finished a fully functioning Lua parser and interpreter with custom syntax for recipe
+definition. But work on the project stalled when writing the code to handle external
+scripts. I learned how difficult it is to correctly start processes, capture their input
+and output, manage environment variables, and handle crashed or unresponsive commands.
+Make has built up a very robust system for calling executables and running bash scripts
+that is extremely difficult to port to Java. It handles many corner-cases and works around
+issues that I didn't even know existed until I tried to implement a similar system.
+
+I started JMaker as part of my [Blue Lagoon](blue_lagoon) project. Gradle wasn't
+able to understand some asset-generating scripts for tileset management. Unfortunately,
+I wasn't able to get it working well enough to replace Gradle on that project.
+"""
+
+[left_bar]
+Language = "Java"
+"Github Repo" = {url="https://github.com/Phlosioneer/JMaker", text="Phlosioneer/JMaker"}
+

@@ -1,0 +1,28 @@
+
+name = "Lua Interpreter"
+brief = "A Lua script interpreter in pure Rust"
+desc = """
+**Lua-rs** was a Lua interpreter implemented in rust. The library is able
+to parse Lua code into an abstract syntax tree. I started on this project
+because there were no pure Rust crates able to run Lua. The only option was
+to use a wrapper around the Lua C API, which was not very safe.
+
+Going into this project, I had a lot of experience with Lua: my
+[JMaker](jmaker) project involved writing an interpreter for an extended
+version of Lua. However, I eventually lost the motivation to continue with
+the project. It used a recursive-descent parser, which I was unable to make
+safe in Rust. It also used a recursive expression evaluator, which was unsafe
+due to possible stack overflows. At the time I didn't know there were
+alternatives to recursive descent, and also got bogged down in the details of
+memory management in the AST-walking code.
+
+With my current knowledge of parsers and a better understanding of managing
+complex algorithms, I think I would be able to complete this project. However
+there are now multiple Rust crates available to parse and execute Lua safely.
+"""
+#TODO: Was lua-rs before or after JMaker?
+#TODO: How complete is lua-rs? Does it work?
+
+[left_bar]
+Language = "Rust"
+"Gitlab Repo" = {url="https://gitlab.com/Phlosioneer/lua-rs", text="Phlosioneer/lua-rs"}

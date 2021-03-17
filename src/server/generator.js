@@ -72,17 +72,45 @@ function fancySpellCheck(spellChecker, text, name) {
 }
 
 async function readProjectData() {
-	const raw = await fs.readFile('resources/projects.toml');
-	var parsed;
+	const mainFileRaw = await fs.readFile('resources/projects.toml');
+	var mainFile;
 	try {
-		parsed = await toml.parse(raw);
+		mainFile = await toml.parse(mainFileRaw);
 	} catch (e) {
 		throw {
 			message: "Error while parsing projects.toml",
 			error: e
 		};
 	}
-	return parsed;
+	
+	const allProjectNames = mainFile.featured.concat(mainFile.not_featured);
+	mainFile.allProjectNames = allProjectNames;
+	if (!mainFile.projects) {
+		mainFile.projects = {};
+	}
+
+	const projectPromises = allProjectNames.map(async name => {
+		const path = "resources/projects/" + name + "/project.toml";
+		var projectFileRaw;
+		try {
+			projectFileRaw = await fs.readFile(path);
+		} catch (e) {
+			console.log("Warning: No project.toml for " + name);
+			return;
+		}
+
+		try {
+			mainFile.projects[name] = toml.parse(projectFileRaw);
+		} catch (e) {
+			throw {
+				message: "Error while parsing " + path,
+				error: e
+			};
+		}
+	});
+
+	await Promise.all(projectPromises);
+	return mainFile;
 }
 
 // Read all mustache files in the templates directory.
