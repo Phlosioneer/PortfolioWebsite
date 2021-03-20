@@ -2,7 +2,7 @@
 # Use `make run` to start localhost web server.
 
 # Input variables
-WEB_FILES:=index.html mystyles.css $(notdir $(wildcard src/client/*)) CNAME
+WEB_FILES:=index.html mystyles.css $(notdir $(wildcard src/client/*)) CNAME docs/resume.pdf
 DEPENDENCIES:=splide.js splide.min.css fontawesome/fontawesome.js fontawesome/solid.js
 WEB_OUTPUT_DIR:=generated/web/
 GENERATOR:=src/server/generator.js
@@ -48,7 +48,9 @@ publish: all $(WEB_OUTPUT_DIR)CNAME
 
 # Generated Makefiles
 #$(GENERATED_DEPS):
-
+$(WEB_OUTPUT_DIR)docs/resume.pdf: resources/resume.pdf
+	@mkdir -p $(dir $@)
+	cp $^ $@
 
 # Dependency Recipes
 $(WEB_OUTPUT_DIR)fontawesome/fontawesome.js:
